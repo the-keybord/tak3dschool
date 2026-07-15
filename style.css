@@ -1144,17 +1144,62 @@ footer p {
   margin-bottom: 0;
 }
 
-/* Mobile Mentor Placeholder Container */
-#mobile-mentor-placeholder {
-  display: none;
+/* Mentor Spotlight Section */
+.mentor-section {
+  padding: 64px 0;
+  background-color: var(--bg-primary);
+  border-bottom: 1px solid var(--border);
+}
+
+/* Hero 3D Model Container */
+.hero-model-container {
+  width: 100%;
+  height: 480px;
+  position: relative;
+  overflow: hidden;
+}
+
+@media (max-width: 992px) {
+  .hero-model-container {
+    height: 380px;
+  }
 }
 
 @media (max-width: 768px) {
-  #mobile-mentor-placeholder {
-    display: block;
-    margin-top: 48px;
-    margin-bottom: 24px;
+  .hero-model-container {
+    height: 300px;
+    order: 2; /* model second on mobile */
   }
+  .hero-content {
+    order: 1; /* text first on mobile */
+    text-align: center;
+  }
+  .hero-highlights {
+    align-items: center;
+  }
+}
+
+#stl-viewer {
+  width: 100%;
+  height: 100%;
+}
+
+/* Spinner */
+.stl-loader-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  border-top-color: var(--primary);
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
 .inprogress-note {

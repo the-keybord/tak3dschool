@@ -7,7 +7,11 @@
   <meta name="description"
     content="TAK 3D School - Academie premium de modelare și imprimare 3D. Cursuri STEM practice pentru copii de 7-15 ani.">
   <title>TAK 3D School | Modelare și Imprimare 3D</title>
-  <link rel="stylesheet" href="style.css?v=1.1.0">
+  <link rel="stylesheet" href="style.css?v=1.1.3">
+  <!-- Three.js and loaders for interactive 3D STL viewing -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/STLLoader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 </head>
 
 <body>
@@ -57,6 +61,14 @@
     <!-- Hero Section -->
     <section class="hero">
       <div class="container hero-grid">
+        <!-- Left Column: 3D Model Viewer Only -->
+        <div class="hero-model-container">
+          <div id="stl-viewer" data-stl="clopot.stl">
+            <div class="stl-loader-spinner"></div>
+          </div>
+        </div>
+
+        <!-- Right Column: Hero Content -->
         <div class="hero-content">
           <div class="hero-badge">★ Nivelul 2 - Recomandat 10-12 ani</div>
           <h1 class="hero-title">Modelare și Imprimare <span>3D pentru Copii</span></h1>
@@ -72,22 +84,6 @@
           </ul>
           <div class="hero-ctas">
             <a href="#curriculum" class="btn btn-primary">Programa Cursului</a>
-          </div>
-        </div>
-
-        <div class="hero-visual-content">
-          <!-- Mentor Profile Card (Split Dark Layout) -->
-          <div class="mentor-card">
-            <div class="mentor-image-container">
-              <img src="mentorA.png" alt="Andrian Bocancea" class="mentor-img">
-            </div>
-            <div class="mentor-info-container">
-              <div class="mentor-title-info">
-                <span class="mentor-job">Mentor Principal 3D</span>
-                <h3 class="mentor-name">Andrian Bocancea</h3>
-              </div>
-              <p class="mentor-bio">Specialist în modelare digitală și inginerie STEM cu o experiență de peste 6 ani în utilizarea tehnologiilor de printare 3D. Andrian ghidează elevii pas cu pas de la noțiunile de bază de modelare până la realizarea practică a mecanismelor mobile complexe.</p>
-            </div>
           </div>
         </div>
       </div>
@@ -204,8 +200,24 @@
       </div>
     </section>
 
-    <!-- Mobile Mentor Spotlight Placeholder -->
-    <div id="mobile-mentor-placeholder" class="container"></div>
+    <!-- Mentor Section (Spotlight) -->
+    <section class="mentor-section">
+      <div class="container">
+        <!-- Mentor Profile Card (Split Dark Layout) -->
+        <div class="mentor-card">
+          <div class="mentor-image-container">
+            <img src="mentorA.png" alt="Andrian Bocancea" class="mentor-img">
+          </div>
+          <div class="mentor-info-container">
+            <div class="mentor-title-info">
+              <span class="mentor-job">Mentor Principal 3D</span>
+              <h3 class="mentor-name">Andrian Bocancea</h3>
+            </div>
+            <p class="mentor-bio">Specialist în modelare digitală și inginerie STEM cu o experiență de peste 6 ani în utilizarea tehnologiilor de printare 3D. Andrian ghidează elevii pas cu pas de la noțiunile de bază de modelare până la realizarea practică a mecanismelor mobile complexe.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- Additional Details Section (Three Column Layout below Carousel) -->
     <section class="course-info-grid">
@@ -295,7 +307,7 @@
         </div>
 
       </div>
-    </section>
+
 
   </div>
 

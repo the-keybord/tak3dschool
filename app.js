@@ -100,17 +100,17 @@ document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => {
         submitBtn.textContent = originalText;
         submitBtn.disabled = false;
-        
+
         let feedbackText = '';
         if (track === 'level2') {
           feedbackText = `Vă mulțumim, ${name}! Cererea dvs. de înscriere la Nivelul 2 a fost înregistrată. Vă vom trimite confirmarea pe adresa ${email} în cel mai scurt timp.`;
         } else {
           feedbackText = `Vă mulțumim, ${name}! Ați fost înscris în lista de așteptare pentru ${lvlName}. Vă vom notifica la adresa ${email} când dăm startul.`;
         }
-        
+
         showFeedback(mainFormMsg, feedbackText, 'success');
         applyForm.reset();
-        
+
         // Retain selection after reset
         trackDropdown.value = track;
       }, 1200);
@@ -177,26 +177,205 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // 6. Dynamic Relocation of Mentor Card for Mobile Layout
-  function relocateMentorCard() {
-    const mentorCard = document.querySelector('.mentor-card');
-    const heroVisual = document.querySelector('.hero-visual-content');
-    const mobileContainer = document.getElementById('mobile-mentor-placeholder');
 
-    if (!mentorCard || !heroVisual || !mobileContainer) return;
 
-    if (window.innerWidth <= 768) {
-      if (mentorCard.parentElement !== mobileContainer) {
-        mobileContainer.appendChild(mentorCard);
+  // 7. Interactive 3D STL Viewer using Three.js
+  function initStlViewer() {
+    const container = document.getElementById('stl-viewer');
+    if (!container) return;
+
+    const spinner = container.querySelector('.stl-loader-spinner');
+    
+    // We will preload these two models and alternate them every 4 seconds
+    const files = ['clopot.stl', 'arcul.stl'];
+    const meshes = [];
+    let loadedCount = 0;
+    let currentModelRadius = 50;
+
+    // Create scene, camera and renderer
+    const scene = new THREE.Scene();
+
+    // We will initialize a dummy camera here, then update its frustum once the model geometry loads
+    let aspect = container.clientWidth / container.clientHeight;
+    let frustumSize = 100;
+    const camera = new THREE.OrthographicCamera(
+      frustumSize * aspect / -2,
+      frustumSize * aspect / 2,
+      frustumSize / 2,
+      frustumSize / -2,
+      0.1,
+      1000
+    );
+    
+    // Isometric camera positioning (equal x, y, and z offsets looking at center)
+    camera.position.set(100, 100, 100);
+    camera.lookAt(scene.position);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setSize(container.clientWidth, container.clientHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.shadowMap.enabled = true;
+    container.appendChild(renderer.domElement);
+
+    // Add natural soft lighting (sunlight colors)
+    // Ambient fill using a soft white/warm mix
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.55);
+    scene.add(ambientLight);
+
+    // Warm main sun-like light from top-right-front
+    const dirLight1 = new THREE.DirectionalLight(0xfffaf0, 0.85);
+    dirLight1.position.set(120, 150, 100);
+    scene.add(dirLight1);
+
+    // Cool blue-grey sky bounce fill light from top-left-back
+    const dirLight2 = new THREE.DirectionalLight(0xdbe5f5, 0.4);
+    dirLight2.position.set(-100, 100, -100);
+    scene.add(dirLight2);
+
+    // Neutral fill light from below to soften bottom shadows
+    const keyLight = new THREE.DirectionalLight(0xffffff, 0.3);
+    keyLight.position.set(0, -100, 50);
+    scene.add(keyLight);
+
+    const loader = new THREE.STLLoader();
+    const material = new THREE.MeshStandardMaterial({
+      color: 0xff5722, // Orange brand color
+      roughness: 0.35, // Smooth plastic feel
+      metalness: 0.1,  // Non-metallic plastic
+      flatShading: false // Smooth shading for natural look
+    });
+
+    let targetFrustumSize = 100;
+    let currentFrustumSize = 100;
+    let spinVelocity = 0.015;
+
+    files.forEach((file, index) => {
+      loader.load(file, function (geometry) {
+        geometry.center();
+        geometry.computeBoundingSphere();
+
+        const mesh = new THREE.Mesh(geometry, material);
+        
+        // Orient the mesh using the user's preferred orientation (-140 on X)
+        mesh.rotation.x = THREE.MathUtils.degToRad(-140);
+        mesh.rotation.y = THREE.MathUtils.degToRad(0);
+        
+        // Center the model in the canvas
+        mesh.position.x = 0;
+        
+        mesh.visible = (index === 0); // Show only the first model initially
+        mesh.targetScale = (index === 0) ? 1.0 : 0.0;
+        
+        if (index !== 0) {
+          mesh.scale.set(0, 0, 0);
+        }
+
+        scene.add(mesh);
+
+        meshes[index] = mesh;
+        loadedCount++;
+
+        // Once both models are loaded, start loop and setup intervals
+        if (loadedCount === files.length) {
+          if (spinner) {
+            spinner.style.display = 'none';
+          }
+
+          // Set initial camera fit bounds for the first model
+          const radius = meshes[0].geometry.boundingSphere.radius;
+          currentModelRadius = radius;
+          targetFrustumSize = radius * 2.0;
+          currentFrustumSize = targetFrustumSize;
+          aspect = container.clientWidth / container.clientHeight;
+          camera.left = currentFrustumSize * aspect / -2;
+          camera.right = currentFrustumSize * aspect / 2;
+          camera.top = currentFrustumSize / 2;
+          camera.bottom = currentFrustumSize / -2;
+          camera.updateProjectionMatrix();
+
+          // Setup swap interval (every 4 seconds)
+          let activeIndex = 0;
+          setInterval(() => {
+            const oldIndex = activeIndex;
+            activeIndex = (activeIndex + 1) % files.length;
+            
+            // Set scale targets for transition
+            meshes[oldIndex].targetScale = 0.0;
+            
+            meshes[activeIndex].visible = true;
+            meshes[activeIndex].scale.set(0, 0, 0); // Reset scale to 0 to grow
+            meshes[activeIndex].targetScale = 1.0;
+
+            // Update target camera bounds to fit new model radius
+            const activeRadius = meshes[activeIndex].geometry.boundingSphere.radius;
+            currentModelRadius = activeRadius;
+            targetFrustumSize = activeRadius * 2.0;
+
+            // Trigger a high-speed spin burst (twist effect)
+            spinVelocity = 0.18;
+          }, 4000);
+
+          // Animate loop
+          function animate() {
+            requestAnimationFrame(animate);
+            
+            // 1. Decay the spin velocity back to default slow spin
+            spinVelocity = THREE.MathUtils.lerp(spinVelocity, 0.015, 0.06);
+
+            // 2. Rotate all loaded models so the background/hidden one is already spinning when swapped
+            meshes.forEach(m => {
+              m.rotation.z += spinVelocity;
+            });
+
+            // 3. Lerp scale of all meshes towards their targetScale
+            meshes.forEach(m => {
+              m.scale.x = THREE.MathUtils.lerp(m.scale.x, m.targetScale, 0.12);
+              m.scale.y = THREE.MathUtils.lerp(m.scale.y, m.targetScale, 0.12);
+              m.scale.z = THREE.MathUtils.lerp(m.scale.z, m.targetScale, 0.12);
+
+              // Visibility optimization: hide completely when scale is tiny
+              if (m.targetScale === 0 && m.scale.x < 0.01) {
+                m.visible = false;
+              } else {
+                m.visible = true;
+              }
+            });
+
+            // 4. Lerp camera frustum size for smooth zooming
+            currentFrustumSize = THREE.MathUtils.lerp(currentFrustumSize, targetFrustumSize, 0.06);
+            const currentAspect = container.clientWidth / container.clientHeight;
+            camera.left = currentFrustumSize * currentAspect / -2;
+            camera.right = currentFrustumSize * currentAspect / 2;
+            camera.top = currentFrustumSize / 2;
+            camera.bottom = currentFrustumSize / -2;
+            camera.updateProjectionMatrix();
+            
+            renderer.render(scene, camera);
+          }
+          animate();
+        }
+      }, undefined, function (error) {
+        console.error("Error loading STL file:", file, error);
+        if (spinner) {
+          spinner.innerHTML = "<span style='color: var(--primary); font-size: 0.85rem;'>Eroare încărcare modele 3D</span>";
+        }
+      });
+    });
+
+    window.addEventListener('resize', () => {
+      const width = container.clientWidth;
+      const height = container.clientHeight;
+      aspect = width / height;
+      
+      // Update camera projection on resize
+      if (typeof currentModelRadius !== 'undefined') {
+        targetFrustumSize = currentModelRadius * 2.0;
       }
-    } else {
-      if (mentorCard.parentElement !== heroVisual) {
-        heroVisual.appendChild(mentorCard);
-      }
-    }
+      renderer.setSize(width, height);
+    });
   }
 
-  window.addEventListener('resize', relocateMentorCard);
-  // Relocate immediately after initialization
-  relocateMentorCard();
+  // Initialize STL Viewer
+  initStlViewer();
 
 });
