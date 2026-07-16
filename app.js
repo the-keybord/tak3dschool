@@ -80,11 +80,12 @@ document.addEventListener('DOMContentLoaded', () => {
       const name = document.getElementById('name').value.trim();
       const email = document.getElementById('email').value.trim();
       const track = document.getElementById('track').value;
-      const message = document.getElementById('message').value.trim();
+      const phone = document.getElementById('phone').value.trim();
 
-      if (name === '' || email === '' || track === '' || message === '') {
+      if (name === '' || email === '' || track === '' || phone === '') {
         showFeedback(mainFormMsg, 'Vă rugăm să completați toate câmpurile corect.', 'error');
         return;
+
       }
 
       let lvlName = 'Curs';
@@ -185,9 +186,18 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!container) return;
 
     const spinner = container.querySelector('.stl-loader-spinner');
-    
-    // We will preload these two models and alternate them every 4 seconds
-    const files = ['clopot.stl', 'arcul.stl'];
+
+    // Shuffle helper to randomize the models queue
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+
+    // We will preload these models and alternate them every 4 seconds in random order
+    const files = shuffleArray(['clopotel.stl', 'arculUmf.stl', 'cizz.stl', 'romanita.stl', 'pika.stl']);
     const meshes = [];
     let loadedCount = 0;
     let currentModelRadius = 50;
@@ -206,7 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
       0.1,
       1000
     );
-    
+
     // Isometric camera positioning (equal x, y, and z offsets looking at center)
     camera.position.set(100, 100, 100);
     camera.lookAt(scene.position);
@@ -238,12 +248,17 @@ document.addEventListener('DOMContentLoaded', () => {
     scene.add(keyLight);
 
     const loader = new THREE.STLLoader();
-    const material = new THREE.MeshStandardMaterial({
-      color: 0xff5722, // Orange brand color
-      roughness: 0.35, // Smooth plastic feel
-      metalness: 0.1,  // Non-metallic plastic
-      flatShading: false // Smooth shading for natural look
-    });
+
+    // Helper to select one of 3 distinct, beautiful brand orange shades
+    function getRandomOrangeColor() {
+      const orangeShades = [
+        0xff5722, // Vibrant primary orange
+        0xff9100, // Golden bright orange
+        0xe64a19  // Deep rich coral orange
+      ];
+      const randomIndex = Math.floor(Math.random() * orangeShades.length);
+      return new THREE.Color(orangeShades[randomIndex]);
+    }
 
     let targetFrustumSize = 100;
     let currentFrustumSize = 100;
@@ -254,18 +269,26 @@ document.addEventListener('DOMContentLoaded', () => {
         geometry.center();
         geometry.computeBoundingSphere();
 
+        // Create a unique material with a random brand-aligned orange shade for each model
+        const material = new THREE.MeshStandardMaterial({
+          color: getRandomOrangeColor(),
+          roughness: 0.35, // Smooth plastic feel
+          metalness: 0.1,  // Non-metallic plastic
+          flatShading: false // Smooth shading for natural look
+        });
+
         const mesh = new THREE.Mesh(geometry, material);
-        
+
         // Orient the mesh using the user's preferred orientation (-140 on X)
         mesh.rotation.x = THREE.MathUtils.degToRad(-140);
         mesh.rotation.y = THREE.MathUtils.degToRad(0);
-        
+
         // Center the model in the canvas
         mesh.position.x = 0;
-        
+
         mesh.visible = (index === 0); // Show only the first model initially
         mesh.targetScale = (index === 0) ? 1.0 : 0.0;
-        
+
         if (index !== 0) {
           mesh.scale.set(0, 0, 0);
         }
@@ -293,15 +316,15 @@ document.addEventListener('DOMContentLoaded', () => {
           camera.bottom = currentFrustumSize / -2;
           camera.updateProjectionMatrix();
 
-          // Setup swap interval (every 4 seconds)
+          // Setup swap interval (every 2 seconds)
           let activeIndex = 0;
           setInterval(() => {
             const oldIndex = activeIndex;
             activeIndex = (activeIndex + 1) % files.length;
-            
+
             // Set scale targets for transition
             meshes[oldIndex].targetScale = 0.0;
-            
+
             meshes[activeIndex].visible = true;
             meshes[activeIndex].scale.set(0, 0, 0); // Reset scale to 0 to grow
             meshes[activeIndex].targetScale = 1.0;
@@ -313,14 +336,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Trigger a high-speed spin burst (twist effect)
             spinVelocity = 0.18;
-          }, 4000);
+          }, 2000);
 
           // Animate loop
           function animate() {
             requestAnimationFrame(animate);
-            
+
             // 1. Decay the spin velocity back to default slow spin
-            spinVelocity = THREE.MathUtils.lerp(spinVelocity, 0.015, 0.06);
+            spinVelocity = THREE.MathUtils.lerp(spinVelocity, 0.015, 0.1);
 
             // 2. Rotate all loaded models so the background/hidden one is already spinning when swapped
             meshes.forEach(m => {
@@ -329,9 +352,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // 3. Lerp scale of all meshes towards their targetScale
             meshes.forEach(m => {
-              m.scale.x = THREE.MathUtils.lerp(m.scale.x, m.targetScale, 0.12);
-              m.scale.y = THREE.MathUtils.lerp(m.scale.y, m.targetScale, 0.12);
-              m.scale.z = THREE.MathUtils.lerp(m.scale.z, m.targetScale, 0.12);
+              m.scale.x = THREE.MathUtils.lerp(m.scale.x, m.targetScale, 0.2);
+              m.scale.y = THREE.MathUtils.lerp(m.scale.y, m.targetScale, 0.2);
+              m.scale.z = THREE.MathUtils.lerp(m.scale.z, m.targetScale, 0.2);
 
               // Visibility optimization: hide completely when scale is tiny
               if (m.targetScale === 0 && m.scale.x < 0.01) {
@@ -342,14 +365,14 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             // 4. Lerp camera frustum size for smooth zooming
-            currentFrustumSize = THREE.MathUtils.lerp(currentFrustumSize, targetFrustumSize, 0.06);
+            currentFrustumSize = THREE.MathUtils.lerp(currentFrustumSize, targetFrustumSize, 0.12);
             const currentAspect = container.clientWidth / container.clientHeight;
             camera.left = currentFrustumSize * currentAspect / -2;
             camera.right = currentFrustumSize * currentAspect / 2;
             camera.top = currentFrustumSize / 2;
             camera.bottom = currentFrustumSize / -2;
             camera.updateProjectionMatrix();
-            
+
             renderer.render(scene, camera);
           }
           animate();
@@ -366,7 +389,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const width = container.clientWidth;
       const height = container.clientHeight;
       aspect = width / height;
-      
+
       // Update camera projection on resize
       if (typeof currentModelRadius !== 'undefined') {
         targetFrustumSize = currentModelRadius * 2.0;

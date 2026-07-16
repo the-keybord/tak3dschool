@@ -814,18 +814,7 @@ header .btn-primary:hover {
   }
 }
 
-/* ================= 3-COLUMN Grid details below Carousel ================= */
-.course-info-grid {
-  padding: 60px 0 80px 0;
-  border-top: 1px solid var(--border);
-  background-color: var(--bg-secondary);
-}
 
-.info-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 36px;
-}
 
 .info-card {
   background-color: var(--bg-card);
@@ -880,24 +869,68 @@ header .btn-primary:hover {
   border-bottom: 1px solid var(--border);
 }
 
-.enroll-container {
-  max-width: 600px;
-  margin: 0 auto;
+.enroll-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+@media (max-width: 992px) {
+  .enroll-grid {
+    gap: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .enroll-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+}
+
+.enroll-details-column {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.enroll-details-column .info-card {
+  margin: 0;
+  width: 100%;
+}
+
+.enroll-form-card {
   background-color: var(--bg-card);
   border: 1px solid var(--border);
   padding: 40px;
   box-shadow: var(--shadow-1);
+  position: sticky;
+  top: 40px; /* Anchors the form card during scrolling! */
 }
 
-.enroll-container h2 {
-  text-align: center;
+@media (max-width: 768px) {
+  .enroll-form-card {
+    position: static;
+  }
+}
+
+@media (max-width: 480px) {
+  .enroll-form-card {
+    padding: 24px;
+  }
+}
+
+/* Enrollment Form Card Header Override */
+.enroll-form-card h2 {
   margin-bottom: 8px;
 }
 
-.enroll-container p.enroll-desc {
-  text-align: center;
+.enroll-form-card p.enroll-desc {
   margin-bottom: 32px;
   font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
 }
 
 .form-group {
@@ -1182,6 +1215,16 @@ footer p {
 #stl-viewer {
   width: 100%;
   height: 100%;
+  background-color: transparent; /* Transparent so it floats on the page */
+  border: none;
+  position: relative;
+  overflow: hidden;
+}
+
+#stl-viewer canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
 }
 
 /* Spinner */
@@ -1192,7 +1235,7 @@ footer p {
   transform: translate(-50%, -50%);
   width: 40px;
   height: 40px;
-  border: 3px solid rgba(255, 255, 255, 0.1);
+  border: 3px solid rgba(0, 0, 0, 0.06); /* Dark border for white background contrast */
   border-radius: 50%;
   border-top-color: var(--primary);
   animation: spin 1s ease-in-out infinite;
