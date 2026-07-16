@@ -24,15 +24,9 @@
       </a>
 
       <div class="header-level-tabs">
-        <button class="header-level-tab" data-level="level1">
-          Junior <span class="lvl-status">În Lucru</span>
-        </button>
-        <button class="header-level-tab active" data-level="level2">
-          Start <span class="lvl-status">Activ</span>
-        </button>
-        <button class="header-level-tab" data-level="level3">
-          Pro <span class="lvl-status">În Lucru</span>
-        </button>
+        <button class="header-level-tab" data-level="level1">Junior</button>
+        <button class="header-level-tab active" data-level="level2">Start</button>
+        <button class="header-level-tab" data-level="level3">Pro</button>
       </div>
 
     </div>
@@ -40,6 +34,21 @@
 
   <!-- ================= NIVELUL 1 (ÎN LUCRU) ================= -->
   <div id="view-level1" class="page-view">
+    <div class="wip-banner">
+      <div class="wip-banner-container">
+        <svg class="wip-banner-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+          <line x1="12" y1="9" x2="12" y2="13"></line>
+          <line x1="12" y1="17" x2="12.01" y2="17"></line>
+        </svg>
+        <div class="wip-banner-content">
+          <span class="wip-banner-title">Lucru în curs</span>
+          <span class="wip-banner-text">Programa pentru nivelul Junior (7-9 ani) este în curs de dezvoltare. Înscrie-te
+            în lista de așteptare!</span>
+        </div>
+      </div>
+    </div>
     <section class="inprogress-hero">
       <div class="container">
         <div class="inprogress-content">
@@ -76,7 +85,8 @@
             să gândim în spațiu, să proiectăm mecanisme și să le dăm viață direct pe imprimantă.</p>
           <ul class="hero-highlights">
             <li class="hero-highlight-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                stroke-linejoin="round">
                 <polyline points="20 6 9 17 4 12"></polyline>
               </svg>
               <span>Laborator dotat cu imprimante performante</span>
@@ -213,7 +223,9 @@
               <span class="mentor-job">Mentor Principal 3D</span>
               <h3 class="mentor-name">Andrian Bocancea</h3>
             </div>
-            <p class="mentor-bio">Specialist în modelare digitală și inginerie STEM cu o experiență de peste 6 ani în utilizarea tehnologiilor de printare 3D. Andrian ghidează elevii pas cu pas de la noțiunile de bază de modelare până la realizarea practică a mecanismelor mobile complexe.</p>
+            <p class="mentor-bio">Specialist în modelare digitală și inginerie STEM cu o experiență de peste 6 ani în
+              utilizarea tehnologiilor de printare 3D. Andrian ghidează elevii pas cu pas de la noțiunile de bază de
+              modelare până la realizarea practică a mecanismelor mobile complexe.</p>
           </div>
         </div>
       </div>
@@ -223,16 +235,18 @@
     <section id="enroll" class="enroll-section">
       <div class="container">
         <div class="enroll-grid">
-          
+
           <!-- Left Column: Course Details -->
           <div class="enroll-details-column">
             <!-- Viziunea Cursului -->
             <div class="info-card">
               <h3>Viziunea Cursului</h3>
               <p><strong>Transformă imaginația în obiecte reale!</strong></p>
-              <p>Acesta nu este doar un curs de calculator, ci o experiență STEM completă în care copiii încetează să mai
+              <p>Acesta nu este doar un curs de calculator, ci o experiență STEM completă în care copiii încetează să
+                mai
                 fie simpli consumatori de tehnologie și devin creatori activi.</p>
-              <p>Datorită structurii noastre adaptate, copiii pleacă acasă la finalul fiecărei ședințe cu obiectul fizic pe
+              <p>Datorită structurii noastre adaptate, copiii pleacă acasă la finalul fiecărei ședințe cu obiectul fizic
+                pe
                 care l-au proiectat singuri.</p>
             </div>
 
@@ -282,12 +296,9 @@
           <!-- Right Column: Registration Form -->
           <div class="enroll-form-card">
             <h2>Formular de Înscriere</h2>
-            <p class="enroll-desc">Completează formularul de înscriere pentru Nivelul 2. Mentorul vă va contacta în cel mai scurt timp pentru confirmare.</p>
+            <p class="enroll-desc">Completează formularul de înscriere pentru Nivelul START.</p>
             <form id="apply-form">
-              <div class="form-group">
-                <label for="name">Nume Complet Elev</label>
-                <input type="text" id="name" class="form-control" placeholder="Ex: Popescu Radu" required>
-              </div>
+
               <div class="form-group">
                 <label for="email">Adresă de Email Părinte</label>
                 <input type="email" id="email" class="form-control" placeholder="Ex: parinte@exemplu.ro" required>
@@ -303,7 +314,7 @@
               </div>
               <div class="form-group">
                 <label for="phone">Număr de Telefon</label>
-                <input type="tel" id="phone" class="form-control" placeholder="Ex: +40 712 345 678" required>
+                <input type="tel" id="phone" class="form-control" placeholder="Ex: +373 68 356 789" required>
               </div>
               <button type="submit" class="btn btn-primary apply-btn" style="width: 100%;">Trimite Înscrierea</button>
               <div id="form-msg" class="form-message"></div>
@@ -317,6 +328,21 @@
 
   <!-- ================= NIVELUL 3 (ÎN LUCRU) ================= -->
   <div id="view-level3" class="page-view">
+    <div class="wip-banner">
+      <div class="wip-banner-container">
+        <svg class="wip-banner-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+          <line x1="12" y1="9" x2="12" y2="13"></line>
+          <line x1="12" y1="17" x2="12.01" y2="17"></line>
+        </svg>
+        <div class="wip-banner-content">
+          <span class="wip-banner-title">Lucru în curs</span>
+          <span class="wip-banner-text">Programa pentru nivelul Pro (13-15 ani) este în curs de dezvoltare. Înscrie-te
+            în lista de așteptare!</span>
+        </div>
+      </div>
+    </div>
     <section class="inprogress-hero">
       <div class="container">
         <div class="inprogress-content">

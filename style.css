@@ -146,7 +146,7 @@ header {
 .header-level-tabs {
   display: flex;
   align-items: center;
-  gap: 28px;
+  gap: 16px;
   background-color: transparent;
   padding: 0;
   border: none;
@@ -154,39 +154,92 @@ header {
 }
 
 .header-level-tab {
-  border: none;
-  background: none;
-  padding: 10px 0;
-  font-size: 0.85rem;
-  font-weight: 500;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  background-color: transparent;
+  padding: 12px 28px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
   cursor: pointer;
   transition: var(--transition);
-  color: rgba(255, 255, 255, 0.6);
+  color: #FFFFFF;
+  border-radius: 4px;
   display: flex;
   align-items: center;
-  gap: 6px;
-  border-bottom: 2px solid transparent;
+  justify-content: center;
+  outline: none;
 }
 
 .header-level-tab:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.6);
   color: #FFFFFF;
 }
 
 .header-level-tab.active {
-  color: var(--primary);
-  border-bottom: 2px solid var(--primary);
+  background-color: var(--primary);
+  border-color: var(--primary);
+  color: #000000;
+  box-shadow: var(--shadow-1);
 }
 
-.header-level-tab .lvl-status {
-  font-size: 0.7rem;
-  padding: 2px 6px;
-  background-color: rgba(255, 255, 255, 0.1);
-  color: rgba(255, 255, 255, 0.6);
+.header-level-tab.active:hover {
+  background-color: var(--primary-dark);
+  border-color: var(--primary-dark);
 }
 
-.header-level-tab.active .lvl-status {
-  background-color: rgba(255, 87, 34, 0.15);
+/* Work in Progress Banner */
+.wip-banner {
+  background-color: var(--primary);
+  color: #000000;
+  padding: 16px 0;
+  width: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.wip-banner-container {
+  width: 92%;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.wip-banner-icon {
+  width: 24px;
+  height: 24px;
+  color: #000000;
+  flex-shrink: 0;
+}
+
+.wip-banner-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.wip-banner-title {
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  background-color: #000000;
   color: var(--primary);
+  padding: 4px 10px;
+  border-radius: 2px;
+}
+
+.wip-banner-text {
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: #000000;
+  text-align: center;
 }
 
 /* Outline CTA inside navbar */
@@ -464,75 +517,46 @@ header .btn-primary:hover {
   padding-left: calc(clamp(50px, calc(115px - 3.3vw), 90px) + 4vw);
 }
 
-/* Backgrounds & Colors for individual panels: strictly orange, black, white, grey */
-.accordion-panel[data-panel="0"] {
+/* Backgrounds & Colors for individual panels: strictly orange, white, orange, white */
+.accordion-panel[data-panel="0"],
+.accordion-panel[data-panel="2"] {
   background-color: var(--primary); /* Deep Orange */
   color: #FFFFFF;
 }
 .accordion-panel[data-panel="0"] .panel-num,
-.accordion-panel[data-panel="0"] .panel-lessons-badge {
-  color: rgba(255, 255, 255, 0.8);
+.accordion-panel[data-panel="2"] .panel-num {
+  color: rgba(255, 255, 255, 0.85);
 }
-.accordion-panel[data-panel="0"] h3 {
+.accordion-panel[data-panel="0"] h3,
+.accordion-panel[data-panel="2"] h3 {
   color: #FFFFFF;
 }
-.accordion-panel[data-panel="0"] p {
+.accordion-panel[data-panel="0"] p,
+.accordion-panel[data-panel="2"] p {
   color: rgba(255, 255, 255, 0.9);
 }
 
-.accordion-panel[data-panel="1"] {
-  background-color: #121212; /* Black / Charcoal */
-  color: #FFFFFF;
-}
-.accordion-panel[data-panel="1"] .panel-num {
-  color: var(--primary);
-}
-.accordion-panel[data-panel="1"] .panel-lessons-badge {
-  color: rgba(255, 255, 255, 0.6);
-  background-color: rgba(255, 255, 255, 0.1);
-}
-.accordion-panel[data-panel="1"] h3 {
-  color: #FFFFFF;
-}
-.accordion-panel[data-panel="1"] p {
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.accordion-panel[data-panel="2"] {
-  background-color: #F5F5F5; /* Light Grey */
-  color: var(--text-primary);
-}
-.accordion-panel[data-panel="2"] .panel-num {
-  color: var(--primary);
-}
-.accordion-panel[data-panel="2"] .panel-lessons-badge {
-  color: var(--text-secondary);
-  background-color: rgba(0, 0, 0, 0.05);
-}
-.accordion-panel[data-panel="2"] h3 {
-  color: #000000;
-}
-.accordion-panel[data-panel="2"] p {
-  color: var(--text-secondary);
-}
-
+.accordion-panel[data-panel="1"],
 .accordion-panel[data-panel="3"] {
   background-color: #FFFFFF; /* Pure White */
-  color: var(--text-primary);
-  border-left: 1px solid var(--border);
+  color: #000000; /* Solid Black */
 }
+.accordion-panel[data-panel="1"] .panel-num,
 .accordion-panel[data-panel="3"] .panel-num {
-  color: var(--primary);
+  color: #000000; /* Solid Black */
 }
+.accordion-panel[data-panel="1"] .panel-lessons-badge,
 .accordion-panel[data-panel="3"] .panel-lessons-badge {
-  color: var(--text-secondary);
-  background-color: rgba(0, 0, 0, 0.05);
+  color: #000000; /* Solid Black */
+  background-color: rgba(0, 0, 0, 0.08);
 }
+.accordion-panel[data-panel="1"] h3,
 .accordion-panel[data-panel="3"] h3 {
-  color: #000000;
+  color: #000000; /* Solid Black */
 }
+.accordion-panel[data-panel="1"] p,
 .accordion-panel[data-panel="3"] p {
-  color: var(--text-secondary);
+  color: #000000; /* Solid Black */
 }
 
 /* Active State Expansion */
@@ -576,7 +600,8 @@ header .btn-primary:hover {
   text-transform: uppercase;
 }
 
-.accordion-panel[data-panel="0"] .panel-lessons-badge {
+.accordion-panel[data-panel="0"] .panel-lessons-badge,
+.accordion-panel[data-panel="2"] .panel-lessons-badge {
   background-color: rgba(255, 255, 255, 0.2);
   color: #FFFFFF;
 }
@@ -643,11 +668,11 @@ header .btn-primary:hover {
 }
 
 .accordion-panel[data-panel="0"] .panel-video-overlay,
-.accordion-panel[data-panel="1"] .panel-video-overlay {
+.accordion-panel[data-panel="2"] .panel-video-overlay {
   background: rgba(0, 0, 0, 0.45); /* Dark overlay for white text readability */
 }
 
-.accordion-panel[data-panel="2"] .panel-video-overlay,
+.accordion-panel[data-panel="1"] .panel-video-overlay,
 .accordion-panel[data-panel="3"] .panel-video-overlay {
   background: rgba(255, 255, 255, 0.65); /* Light overlay for dark text readability */
 }
@@ -1070,12 +1095,16 @@ footer p {
   }
 
   .header-level-tabs {
-    gap: 12px; /* Tighter gap on small screens */
+    gap: 8px; /* Tighter gap on small screens */
     justify-content: center;
+    width: 100%;
   }
 
-  .header-level-tab .lvl-status {
-    display: none !important; /* Hide status badges on mobile to prevent horizontal page overflow */
+  .header-level-tab {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+    flex: 1;
+    max-width: 120px;
   }
   
   .enroll-container {
