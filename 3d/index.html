@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="TAK 3D School - Academie premium de modelare și imprimare 3D. Cursuri STEM practice pentru copii de 7-15 ani.">
+  <title>TAK 3D School | Modelare și Imprimare 3D</title>
+  <link rel="stylesheet" href="style.css?v=1.1.8">
+  <!-- Three.js and loaders for interactive 3D STL viewing -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/STLLoader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+</head>
+
+<body>
+
+  <!-- Navigation Header with Compound Logo & Global Level Selector -->
+  <header id="header">
+    <div class="header-container">
+      <div class="logo-brand-group">
+        <a href="#" class="logo-link" title="3D School Home">
+          <img src="3dschoolLogoForSite.png" alt="TAK 3D School Logo" class="logo-img">
+        </a>
+        <span class="logo-divider-x">✕</span>
+        <a href="../" class="logo-link" title="TAK Academy">
+          <img src="../assets/takLogoForSite.png" alt="TAK School Logo" class="logo-img school-logo-img">
+        </a>
+      </div>
+
+      <div class="header-level-tabs">
+        <button class="header-level-tab" data-level="level1">Junior</button>
+        <button class="header-level-tab active" data-level="level2">Start</button>
+        <button class="header-level-tab" data-level="level3">Pro</button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ================= NIVELUL 1 (ÎN LUCRU) ================= -->
+  <div id="view-level1" class="page-view">
+    <div class="wip-banner">
+      <div class="wip-banner-container">
+        <svg class="wip-banner-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+          <line x1="12" y1="9" x2="12" y2="13"></line>
+          <line x1="12" y1="17" x2="12.01" y2="17"></line>
+        </svg>
+        <div class="wip-banner-content">
+          <span class="wip-banner-title">Lucru în curs</span>
+          <span class="wip-banner-text">Programa pentru nivelul Junior (7-9 ani) este în curs de dezvoltare. Înscrie-te
+            în lista de așteptare!</span>
+        </div>
+      </div>
+    </div>
+    <section class="inprogress-hero">
+      <div class="container">
+        <div class="inprogress-content">
+          <span class="inprogress-badge">În curs de dezvoltare</span>
+          <h1 class="inprogress-title">Junior: Începători (7-9 ani)</h1>
+          <p class="inprogress-desc">Lucrăm de zor la finisarea programei pentru Nivelul 1! Cursul se va axa pe noțiuni
+            de bază despre forme geometrice simple, construirea primelor modele 3D și jocuri educaționale menite să
+            antreneze gândirea în spațiu a celor mici.</p>
+
+          <p class="inprogress-note">Acest nivel este în curs de dezvoltare. Rămâi aproape!</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ================= NIVELUL 2 (ACTIV) ================= -->
+  <div id="view-level2" class="page-view active">
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <!-- Left Column: 3D Model Viewer Only -->
+        <div class="hero-model-container">
+          <div id="stl-viewer" data-stl="clopotel.stl">
+            <div class="stl-loader-spinner"></div>
+          </div>
+        </div>
+
+        <!-- Right Column: Hero Content -->
+        <div class="hero-content">
+          <div class="hero-badge">★ Curs Start - Recomandat 10-12 ani</div>
+          <h1 class="hero-title">Modelare și Imprimare <span>3D pentru Copii</span></h1>
+          <p class="hero-desc">TAK 3D School oferă cursuri interactive de modelare și printare 3D pentru copii. Învățăm
+            să gândim în spațiu, să proiectăm mecanisme și să le dăm viață direct pe imprimantă.</p>
+          <ul class="hero-highlights">
+            <li class="hero-highlight-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>Laborator dotat cu imprimante performante</span>
+            </li>
+          </ul>
+          <div class="hero-ctas">
+            <a href="#curriculum" class="btn btn-primary">Programa Cursului</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+      <div class="container stats-grid">
+        <div class="stat-item">
+          <h3>40</h3>
+          <p>Lecții Interactive</p>
+        </div>
+        <div class="stat-item">
+          <h3>10-12</h3>
+          <p>Ani</p>
+        </div>
+        <div class="stat-item">
+          <h3>120</h3>
+          <p>Minute per Ședință</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Curriculum Accordion Section -->
+    <section class="accordion-section" id="curriculum">
+      <div class="accordion-container">
+
+        <!-- Panel 1 -->
+        <div class="accordion-panel active" data-panel="0">
+          <video src="3d2Intro.mp4" loop muted playsinline class="panel-bg-video"></video>
+          <div class="panel-video-overlay"></div>
+          <div class="panel-inner-valign">
+            <div class="panel-header-content">
+              <span class="panel-num">Modulul 1 &bull; 10 lecții</span>
+              <h3 class="panel-title">Cercetare în 3D</h3>
+            </div>
+
+            <div class="panel-body-content">
+              <p class="panel-desc">Elevii învață tranziția de la schițe 2D la spațiul tridimensional, stăpânirea
+                extrudărilor, lucrul cu spații negative și gruparea formelor geometrice de bază.</p>
+            </div>
+
+            <div class="panel-visual">
+              <img src="assets/topic1.svg" alt="Cercetare în 3D" class="panel-svg">
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel 2 -->
+        <div class="accordion-panel" data-panel="1">
+          <video src="3d2Toys.mp4" loop muted playsinline class="panel-bg-video"></video>
+          <div class="panel-video-overlay"></div>
+          <div class="panel-inner-valign">
+            <div class="panel-header-content">
+              <span class="panel-num">Modulul 2 &bull; 10 lecții</span>
+              <h3 class="panel-title">Fabrica de Jucării</h3>
+            </div>
+
+            <div class="panel-body-content">
+              <p class="panel-desc">Studierea mecanismelor simple, a toleranțelor fizice de îmbinare între piese și
+                proiectarea ansamblurilor cu elemente mobile gata articulate direct din imprimantă (print-in-place).</p>
+            </div>
+
+            <div class="panel-visual">
+              <img src="assets/topic2.svg" alt="Fabrica de Jucării" class="panel-svg">
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel 3 -->
+        <div class="accordion-panel" data-panel="2">
+          <video src="3d2Arhitect.mp4" loop muted playsinline class="panel-bg-video"></video>
+          <div class="panel-video-overlay"></div>
+          <div class="panel-inner-valign">
+            <div class="panel-header-content">
+              <span class="panel-num">Modulul 3 &bull; 10 lecții</span>
+              <h3 class="panel-title">Tânărul Arhitect</h3>
+            </div>
+
+            <div class="panel-body-content">
+              <p class="panel-desc">Explorarea simetriei și a scărilor de proporție prin proiectarea în miniatură a unor
+                monumente istorice renumite din Moldova (Cetatea Soroca, Porțile Orașului) și clădiri celebre din lume.
+              </p>
+            </div>
+
+            <div class="panel-visual">
+              <img src="assets/topic3.svg" alt="Tânărul Arhitect" class="panel-svg">
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel 4 -->
+        <div class="accordion-panel" data-panel="3">
+          <video src="3d2Nature.mp4" loop muted playsinline class="panel-bg-video"></video>
+          <div class="panel-video-overlay"></div>
+          <div class="panel-inner-valign">
+            <div class="panel-header-content">
+              <span class="panel-num">Modulul 4 &bull; 10 lecții</span>
+              <h3 class="panel-title">Studiul Naturii</h3>
+            </div>
+
+            <div class="panel-body-content">
+              <p class="panel-desc">Dezvoltarea abilităților de modelare organică curbată prin copierea structurilor
+                biologice (celule, cranii, animale) și elaborarea unui proiect final tipărit pentru expoziție.</p>
+            </div>
+
+            <div class="panel-visual">
+              <img src="assets/topic4.svg" alt="Studiul Naturii și Proiecte Finale" class="panel-svg">
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Mentor Section (Spotlight) -->
+    <section class="mentor-section">
+      <div class="container">
+        <!-- Mentor Profile Card (Split Dark Layout) -->
+        <div class="mentor-card">
+          <div class="mentor-image-container">
+            <img src="mentorA.png" alt="Andrian Bocancea" class="mentor-img">
+          </div>
+          <div class="mentor-info-container">
+            <div class="mentor-title-info">
+              <span class="mentor-job">Mentor Principal 3D</span>
+              <h3 class="mentor-name">Andrian Bocancea</h3>
+            </div>
+            <p class="mentor-bio">Specialist în modelare digitală și inginerie STEM cu o experiență de peste 6 ani în
+              utilizarea tehnologiilor de printare 3D. Andrian ghidează elevii pas cu pas de la noțiunile de bază de
+              modelare până la realizarea practică a mecanismelor mobile complexe.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Combined Details & Enrollment Section -->
+    <section id="enroll" class="enroll-section">
+      <div class="container">
+        <div class="enroll-grid">
+
+          <!-- Left Column: Course Details -->
+          <div class="enroll-details-column">
+            <!-- Viziunea Cursului -->
+            <div class="info-card">
+              <h3>Viziunea Cursului</h3>
+              <p><strong>Transformă imaginația în obiecte reale!</strong></p>
+              <p>Acesta nu este doar un curs de calculator, ci o experiență STEM completă în care copiii încetează să
+                mai
+                fie simpli consumatori de tehnologie și devin creatori activi.</p>
+              <p>Datorită structurii noastre adaptate, copiii pleacă acasă la finalul fiecărei ședințe cu obiectul fizic
+                pe
+                care l-au proiectat singuri.</p>
+            </div>
+
+            <!-- Competențe Dobândite -->
+            <div class="info-card">
+              <h3>Competențe Dobândite</h3>
+              <ul class="info-list">
+                <li class="info-list-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span>Stăpânirea setului complet de instrumente de modelare 3D.</span>
+                </li>
+                <li class="info-list-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span>Înțelegerea noțiunilor fizice de toleranță și asamblare.</span>
+                </li>
+                <li class="info-list-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span>Proiectarea pieselor mobile gata asamblate (print-in-place).</span>
+                </li>
+                <li class="info-list-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span>Traducerea referințelor din plan 2D în geometrie 3D.</span>
+                </li>
+                <li class="info-list-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span>Pregătirea autonomă a fișierului de printare.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Right Column: Registration Form -->
+          <div class="enroll-form-card">
+            <h2>Formular de Înscriere</h2>
+            <p class="enroll-desc">Completează formularul de înscriere pentru Nivelul START.</p>
+            <form id="apply-form">
+
+              <div class="form-group">
+                <label for="email">Adresă de Email Părinte</label>
+                <input type="email" id="email" class="form-control" placeholder="Ex: parinte@exemplu.ro" required>
+              </div>
+              <div class="form-group">
+                <label for="track">Selectează Nivelul Cursului</label>
+                <select id="track" class="form-control" required>
+                  <option value="">-- Alege Nivelul --</option>
+                  <option value="level1">Junior - Începători (În curând)</option>
+                  <option value="level2" selected>Start - Exploratori (10-12 ani)</option>
+                  <option value="level3">Pro - Avansați (În curând)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="phone">Număr de Telefon</label>
+                <input type="tel" id="phone" class="form-control" placeholder="Ex: +373 68 356 789" required>
+              </div>
+              <button type="submit" class="btn btn-primary apply-btn" style="width: 100%;">Trimite Înscrierea</button>
+              <div id="form-msg" class="form-message"></div>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ================= NIVELUL 3 (ÎN LUCRU) ================= -->
+  <div id="view-level3" class="page-view">
+    <div class="wip-banner">
+      <div class="wip-banner-container">
+        <svg class="wip-banner-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+          <line x1="12" y1="9" x2="12" y2="13"></line>
+          <line x1="12" y1="17" x2="12.01" y2="17"></line>
+        </svg>
+        <div class="wip-banner-content">
+          <span class="wip-banner-title">Lucru în curs</span>
+          <span class="wip-banner-text">Programa pentru nivelul Pro (13-15 ani) este în curs de dezvoltare. Înscrie-te
+            în lista de așteptare!</span>
+        </div>
+      </div>
+    </div>
+    <section class="inprogress-hero">
+      <div class="container">
+        <div class="inprogress-content">
+          <span class="inprogress-badge">În curs de dezvoltare</span>
+          <h1 class="inprogress-title">Pro: Avansați (13-15 ani)</h1>
+          <p class="inprogress-desc">Programa pentru Nivelul 3 este în curs de proiectare tehnică! Acest nivel va aborda
+            mecanisme complexe, asamblări multicomponent cu șuruburi/articulații, noțiuni elementare de inginerie
+            industrială și pregătire avansată pentru imprimante 3D profesionale.</p>
+
+          <p class="inprogress-note">Acest nivel este în curs de dezvoltare. Rămâi aproape!</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="#header">Acasă</a>
+        <a href="#enroll">Înscrie-te</a>
+      </div>
+      <p>&copy; 2026 TAK 3D School. Toate drepturile rezervate. Creat cu pasiune pentru viitorii creatori 3D.</p>
+    </div>
+  </footer>
+
+  <script src="app.js?v=1.0.2"></script>
+</body>
+
+</html>
