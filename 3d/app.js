@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const trackDropdown = document.getElementById('track');
   const enrollSection = document.getElementById('enroll');
 
-  function switchLevel(levelId) {
+  function switchLevel(levelId, updateHistory = true) {
     // Update header tabs UI
     headerTabs.forEach(tab => {
       if (tab.getAttribute('data-level') === levelId) {
@@ -50,6 +50,34 @@ document.addEventListener('DOMContentLoaded', () => {
         enrollDesc.textContent = `Completează formularul de mai jos pentru a te înscrie în lista de așteptare pentru ${lvlName}.`;
       }
     }
+
+    // Update URL hash for shareable direct links
+    if (updateHistory && history.replaceState) {
+      history.replaceState(null, null, `#${levelId}`);
+    }
+  }
+
+  // Parse direct link from URL (e.g., #level1, #level2, #level3, ?level=level1, ?level=2)
+  function initLevelFromURL() {
+    const rawHash = window.location.hash.toLowerCase().replace('#', '');
+    const urlParams = new URLSearchParams(window.location.search);
+    const rawQuery = urlParams.get('level') ? urlParams.get('level').toLowerCase() : null;
+    const targetKey = rawHash || rawQuery;
+
+    if (!targetKey) return;
+
+    let targetLevel = null;
+    if (targetKey === 'level1' || targetKey === 'junior' || targetKey === '1') {
+      targetLevel = 'level1';
+    } else if (targetKey === 'level2' || targetKey === 'start' || targetKey === '2') {
+      targetLevel = 'level2';
+    } else if (targetKey === 'level3' || targetKey === 'pro' || targetKey === '3') {
+      targetLevel = 'level3';
+    }
+
+    if (targetLevel) {
+      switchLevel(targetLevel, false);
+    }
   }
 
   headerTabs.forEach(tab => {
@@ -58,6 +86,10 @@ document.addEventListener('DOMContentLoaded', () => {
       switchLevel(levelId);
     });
   });
+
+  // Check URL on load and on hashchange
+  initLevelFromURL();
+  window.addEventListener('hashchange', initLevelFromURL);
 
   // Bidirectional sync: when changing dropdown, switch the active header tab / page view
   if (trackDropdown) {

@@ -3,29 +3,64 @@ document.addEventListener('DOMContentLoaded', () => {
   console.log('TAK Robot Factory Level 1 Initialized');
 
   // ==========================================
-  // 1. LEVEL SWITCHING LOGIC (LEVEL 1, LEVEL 2, PRO)
+  // 1. LEVEL SWITCHING LOGIC & DEEP LINKING (#level1, #level2, #level3)
   // ==========================================
   const levelTabs = document.querySelectorAll('.header-level-tab');
   const pageViews = document.querySelectorAll('.page-view');
 
+  function switchLevel(levelId, updateHistory = true) {
+    levelTabs.forEach(tab => {
+      if (tab.getAttribute('data-level') === levelId) {
+        tab.classList.add('active');
+      } else {
+        tab.classList.remove('active');
+      }
+    });
+
+    pageViews.forEach(view => {
+      if (view.getAttribute('id') === `view-${levelId}`) {
+        view.classList.add('active');
+      } else {
+        view.classList.remove('active');
+      }
+    });
+
+    if (updateHistory && history.replaceState) {
+      history.replaceState(null, null, `#${levelId}`);
+    }
+  }
+
+  function initLevelFromURL() {
+    const rawHash = window.location.hash.toLowerCase().replace('#', '');
+    const urlParams = new URLSearchParams(window.location.search);
+    const rawQuery = urlParams.get('level') ? urlParams.get('level').toLowerCase() : null;
+    const targetKey = rawHash || rawQuery;
+
+    if (!targetKey) return;
+
+    let targetLevel = null;
+    if (targetKey === 'level1' || targetKey === '1') {
+      targetLevel = 'level1';
+    } else if (targetKey === 'level2' || targetKey === '2') {
+      targetLevel = 'level2';
+    } else if (targetKey === 'level3' || targetKey === 'pro' || targetKey === '3') {
+      targetLevel = 'level3';
+    }
+
+    if (targetLevel) {
+      switchLevel(targetLevel, false);
+    }
+  }
+
   levelTabs.forEach(tab => {
     tab.addEventListener('click', () => {
       const targetLevel = tab.getAttribute('data-level');
-
-      // Deactivate all tabs & views
-      levelTabs.forEach(t => t.classList.remove('active'));
-      pageViews.forEach(v => v.classList.remove('active'));
-
-      // Activate clicked tab
-      tab.classList.add('active');
-
-      // Activate target view
-      const targetView = document.getElementById(`view-${targetLevel}`);
-      if (targetView) {
-        targetView.classList.add('active');
-      }
+      switchLevel(targetLevel);
     });
   });
+
+  initLevelFromURL();
+  window.addEventListener('hashchange', initLevelFromURL);
 
   // ==========================================
   // 2. HARDWARE & TEHNOLOGIE COMPONENT INSPECTOR
