@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 310 70" width="310" height="70">
+  <g transform="translate(10, 10)">
+    <!-- Dark Gold / Old Money Geometric Icon -->
+    <polygon points="25,0 48,12 40,46 10,46 2,12" fill="#D4AF37"/>
+    <polygon points="25,0 48,12 25,24 2,12" fill="#E5C158"/>
+    <polygon points="25,24 48,12 40,46" fill="#997A15"/>
+    <!-- Minimalist Crown / Shield emblem -->
+    <path d="M 18 20 L 25 15 L 32 20 L 30 32 L 20 32 Z" fill="#FFFFFF" opacity="0.9"/>
+    
+    <!-- Text: BUSINESS SCHOOL -->
+    <text x="60" y="27" font-family="'Roboto', 'Playfair Display', serif" font-weight="900" font-size="22" fill="#FFFFFF" letter-spacing="1.5">BUSINESS</text>
+    <text x="60" y="44" font-family="'Roboto', sans-serif" font-weight="900" font-size="14" fill="#D4AF37" letter-spacing="2">SCHOOL</text>
+  </g>
+</svg>

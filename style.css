@@ -211,19 +211,52 @@ body {
   font-size: 1rem;
 }
 
+/* Dashboard Body & Centered Logo */
+.dashboard-body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--bg-dark);
+}
+
+.dashboard-main {
+  width: 100%;
+  padding: 3rem 0;
+}
+
+.portal-brand-hero {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.portal-main-logo {
+  height: 115px;
+  width: auto;
+  max-width: 90%;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 20px rgba(0, 0, 0, 0.5));
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.portal-main-logo:hover {
+  transform: scale(1.04);
+}
+
 .courses-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2.5rem;
-  max-width: 900px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem 1.5rem;
+  max-width: 1140px;
   margin: 0 auto;
 }
 
 .course-card-simple {
-  background-color: var(--bg-surface);
-  border: 1.5px solid var(--border-dark);
+  background: transparent;
+  border: none;
   border-radius: var(--radius-lg);
-  padding: 2.5rem 2rem;
+  padding: 0.8rem 0.6rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -231,48 +264,115 @@ body {
   text-decoration: none;
   color: var(--text-light);
   transition: var(--transition);
-  box-shadow: var(--shadow-elevation-1);
+  box-shadow: none;
+  position: relative;
 }
 
 .course-card-simple:hover {
-  border-color: var(--primary-orange);
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-elevation-3);
+  transform: translateY(-4px);
+  box-shadow: none;
 }
 
-.course-card-rf:hover {
-  border-color: #C62828;
-  box-shadow: 0 8px 24px rgba(198, 40, 40, 0.25);
-}
-
+/* Enlarged Logos */
 .card-logo-wrapper {
-  height: 90px;
+  height: 100px;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.8rem;
 }
 
 .card-logo-img {
-  max-height: 80px;
-  max-width: 100%;
+  max-height: 95px;
+  max-width: 92%;
   width: auto;
   object-fit: contain;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+  transition: transform 0.3s ease;
+}
+
+.course-card-simple:hover .card-logo-img {
+  transform: scale(1.06);
+}
+
+/* Direction Age Pills matching exact color palette */
+.card-age-pill {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 800;
+  padding: 0.3rem 0.95rem;
+  border-radius: 50px;
+  background-color: #1A1A1A;
+  color: var(--primary-orange);
+  border: 1.5px solid rgba(255, 107, 0, 0.4);
+  margin-bottom: 0.6rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
+  transition: var(--transition);
+}
+
+/* 1. Milo (Yellow) */
+.pill-milo {
+  color: #FBC02D;
+  border-color: rgba(251, 192, 45, 0.45);
+}
+
+/* 2. RoboMaker (Red) */
+.pill-robomaker {
+  color: #EF3B24;
+  border-color: rgba(239, 59, 36, 0.45);
+}
+
+/* 3. Robot Factory (Pink/Cherry Red) */
+.pill-rf {
+  color: #E91E63;
+  border-color: rgba(233, 30, 99, 0.45);
+}
+
+/* 4. 10 La Bac (Blue) */
+.pill-bac {
+  color: #42A5F5;
+  border-color: rgba(66, 165, 245, 0.45);
+}
+
+/* 5. 3D School (Orange) */
+.pill-3d {
+  color: #FF6B00;
+  border-color: rgba(255, 107, 0, 0.45);
+}
+
+/* 6. Digital School (Green) */
+.pill-digital {
+  color: #4CAF50;
+  border-color: rgba(76, 175, 80, 0.45);
+}
+
+/* 7. Creative School (Purple) */
+.pill-creative {
+  color: #AB47BC;
+  border-color: rgba(171, 71, 188, 0.45);
+}
+
+/* 8. Business School (Dark Gold / Old Money) */
+.pill-business {
+  color: #D4AF37;
+  border-color: rgba(212, 175, 55, 0.45);
+  background-color: rgba(212, 175, 55, 0.1);
+}
+
+.course-card-simple:hover .card-age-pill {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
+  transform: translateY(-2px);
 }
 
 .card-info-simple {
-  margin-bottom: 1.8rem;
-}
-
-.card-title-simple {
-  font-size: 1.6rem;
-  font-weight: 800;
-  margin-bottom: 0.4rem;
-  color: var(--text-light);
+  margin-bottom: 0;
 }
 
 .card-mentor-simple {
-  font-size: 1.05rem;
+  font-size: 0.92rem;
   color: var(--text-muted);
   font-weight: 500;
   margin: 0;
@@ -292,6 +392,17 @@ body {
   background-color: #9A0007;
   color: #FFFFFF;
   box-shadow: 0 4px 12px rgba(198, 40, 40, 0.4);
+}
+
+.btn-robomaker {
+  background-color: #EF3B24;
+  color: #FFFFFF;
+}
+
+.btn-robomaker:hover {
+  background-color: #D32F2F;
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(239, 59, 36, 0.4);
 }
 
 .course-card-disabled {
@@ -475,35 +586,31 @@ footer {
     padding: 2.5rem 0;
   }
 
+  .portal-brand-hero {
+    margin-bottom: 2.5rem;
+  }
+
+  .portal-main-logo {
+    height: 90px;
+  }
+
   .courses-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
     padding: 0 0.5rem;
   }
-
-  .course-card-simple {
-    padding: 2rem 1.2rem;
-  }
-
-  .card-title-simple {
-    font-size: 1.4rem;
-  }
 }
 
 @media (max-width: 480px) {
-  .dashboard-header-container {
-    height: 64px;
-  }
-
-  .logo-img {
-    height: 40px !important;
+  .portal-main-logo {
+    height: 75px;
   }
 
   .card-logo-wrapper {
-    height: 70px;
+    height: 85px;
   }
 
   .card-logo-img {
-    max-height: 60px;
+    max-height: 75px;
   }
 }

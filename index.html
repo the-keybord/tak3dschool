@@ -4,61 +4,118 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="TAK Academy Dashboard - Selectează cursul dorit.">
-  <title>TAK Academy | Dashboard Cursuri</title>
-  <link rel="stylesheet" href="style.css?v=2.0">
+  <meta name="description" content="TAK Academy Dashboard - Portal Direcții Cursuri.">
+  <title>TAK Academy | Portal Direcții Cursuri</title>
+  <link rel="stylesheet" href="style.css?v=4.0">
 </head>
 
 <body class="dashboard-body">
 
-  <!-- Minimal Dashboard Header -->
-  <header id="header" class="dashboard-header">
-    <div class="header-container dashboard-header-container">
-      <a href="./" class="logo">
-        <img src="takLogoForSite.png" alt="TAK Academy Logo" class="logo-img" style="height: 52px; width: auto; display: block;">
-      </a>
-    </div>
-  </header>
-
-  <!-- Dashboard Main Content: Course Cards Only -->
+  <!-- Dashboard Main Content -->
   <main class="dashboard-main">
     <div class="container">
+      
+      <!-- Big Centered TAK Academy Logo -->
+      <div class="portal-brand-hero">
+        <a href="./" title="TAK Academy Home">
+          <img src="takLogoForSite.png" alt="TAK Academy Logo" class="portal-main-logo">
+        </a>
+      </div>
+
+      <!-- Course Cards Grid (All 7 Proposed Directions) -->
       <div class="courses-grid">
 
-        <!-- Course 1: 3D School -->
-        <a href="3d/" class="course-card-simple">
+        <!-- 1. Milo (Yellow) -->
+        <a href="#milo" class="course-card-simple course-card-milo" title="Milo - Curs Lego <9 ani">
           <div class="card-logo-wrapper">
-            <img src="3dschoolLogoForSite.png" alt="3D School Logo" class="card-logo-img">
+            <img src="miloLogo.png" alt="Milo Logo" class="card-logo-img">
           </div>
+          <span class="card-age-pill pill-milo">Vârsta: &lt; 9 ani</span>
           <div class="card-info-simple">
-            <h3 class="card-title-simple">3D School</h3>
-            <p class="card-mentor-simple">cu Bocancea Andrian</p>
+            <p class="card-mentor-simple">Lego Robotics (5-8 ani)</p>
           </div>
-          <span class="btn btn-primary card-btn-simple">Accesează Cursul &rarr;</span>
         </a>
 
-        <!-- Course 2: Robot Factory -->
-        <a href="robot-factory/" class="course-card-simple course-card-rf">
+        <!-- 2. RoboMaker (Red) -->
+        <a href="robomaker/" class="course-card-simple course-card-robomaker" title="RoboMaker - Curs Lego 9+">
+          <div class="card-logo-wrapper">
+            <img src="roboMakerNewLogo.png" alt="RoboMaker Logo" class="card-logo-img">
+          </div>
+          <span class="card-age-pill pill-robomaker">Vârsta: 9+ ani</span>
+          <div class="card-info-simple">
+            <p class="card-mentor-simple">cu Florin Cazac</p>
+          </div>
+        </a>
+
+        <!-- 3. Robot Factory (Pink/Cherry Red) -->
+        <a href="robot-factory/" class="course-card-simple course-card-rf" title="Robot Factory - Robotică Non-LEGO">
           <div class="card-logo-wrapper">
             <img src="rfLogoforSite.png" alt="Robot Factory Logo" class="card-logo-img">
           </div>
+          <span class="card-age-pill pill-rf">Vârsta: 10-16 ani</span>
           <div class="card-info-simple">
-            <h3 class="card-title-simple">Robot Factory</h3>
             <p class="card-mentor-simple">cu Bocancea Andrian și Cristian Romanciuc</p>
           </div>
-          <span class="btn btn-rf card-btn-simple">Accesează Cursul &rarr;</span>
+        </a>
+
+        <!-- 4. 10 La Bac (Blue) -->
+        <a href="#bac" class="course-card-simple course-card-bac" title="10 La Bac - CERTIPORT & Oxford">
+          <div class="card-logo-wrapper">
+            <img src="zecebacForSite.png" alt="10 La Bac Logo" class="card-logo-img">
+          </div>
+          <span class="card-age-pill pill-bac">Vârsta: 15-19 ani</span>
+          <div class="card-info-simple">
+            <p class="card-mentor-simple">Certificări CERTIPORT & Oxford</p>
+          </div>
+        </a>
+
+        <!-- 5. 3D School (Orange) -->
+        <a href="3d/" class="course-card-simple course-card-3d" title="3D School - Modelare 3D Creativă">
+          <div class="card-logo-wrapper">
+            <img src="3dschoolLogoForSite.png" alt="3D School Logo" class="card-logo-img">
+          </div>
+          <span class="card-age-pill pill-3d">Vârsta: 9-14 ani</span>
+          <div class="card-info-simple">
+            <p class="card-mentor-simple">cu Bocancea Andrian</p>
+          </div>
+        </a>
+
+        <!-- 6. Digital School (Green) -->
+        <a href="#digital" class="course-card-simple course-card-digital" title="Digital School - Game Dev & Python">
+          <div class="card-logo-wrapper">
+            <img src="digitalSchoolLogo.png" alt="Digital School Logo" class="card-logo-img">
+          </div>
+          <span class="card-age-pill pill-digital">Vârsta: 8-15 ani</span>
+          <div class="card-info-simple">
+            <p class="card-mentor-simple">Digital Skills, Game Dev & Python</p>
+          </div>
+        </a>
+
+        <!-- 7. Creative School (Purple) -->
+        <a href="#creative" class="course-card-simple course-card-creative" title="Creative School - Design Grafic & Media">
+          <div class="card-logo-wrapper">
+            <img src="creativeForSite.png" alt="Creative School Logo" class="card-logo-img">
+          </div>
+          <span class="card-age-pill pill-creative">Vârsta: 7-16 ani</span>
+          <div class="card-info-simple">
+            <p class="card-mentor-simple">Design Grafic, Desen & Video</p>
+          </div>
+        </a>
+
+        <!-- 8. Business School (Dark Gold / Old Money) -->
+        <a href="#business" class="course-card-simple course-card-business" title="Business School - Antreprenoriat & Leadership">
+          <div class="card-logo-wrapper">
+            <img src="BSlogo.png" alt="Business School Logo" class="card-logo-img">
+          </div>
+          <span class="card-age-pill pill-business">Vârsta: 12-18 ani</span>
+          <div class="card-info-simple">
+            <p class="card-mentor-simple">Antreprenoriat, Leadership & Finanțe</p>
+          </div>
         </a>
 
       </div>
     </div>
   </main>
-
-  <!-- Dashboard Footer -->
-  <footer class="dashboard-footer">
-    <div class="container footer-content">
-      <p>&copy; 2026 TAK Academy (curs.tak.md). Toate drepturile rezervate.</p>
-    </div>
-  </footer>
 
 </body>
 
