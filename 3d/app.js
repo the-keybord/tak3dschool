@@ -43,11 +43,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Toggle main enrollment form description or behavior depending on selection
     if (enrollSection) {
       const enrollDesc = enrollSection.querySelector('.enroll-desc');
-      if (levelId === 'level2') {
-        enrollDesc.textContent = 'Completează formularul de înscriere pentru Nivelul 2 (Exploratori).';
-      } else {
-        const lvlName = levelId === 'level1' ? 'Nivelul 1' : 'Nivelul 3';
-        enrollDesc.textContent = `Completează formularul de mai jos pentru a te înscrie în lista de așteptare pentru ${lvlName}.`;
+      if (enrollDesc) {
+        if (levelId === 'level1') {
+          enrollDesc.textContent = 'Completează formularul de înscriere pentru Nivelul 1 (Junior 7-9 ani).';
+        } else if (levelId === 'level2') {
+          enrollDesc.textContent = 'Completează formularul de înscriere pentru Nivelul 2 (Start 10-12 ani).';
+        } else if (levelId === 'level3') {
+          enrollDesc.textContent = 'Completează formularul de mai jos pentru a te înscrie în lista de așteptare pentru Nivelul 3 (Pro 12+ ani).';
+        }
       }
     }
 
@@ -109,43 +112,34 @@ document.addEventListener('DOMContentLoaded', () => {
     applyForm.addEventListener('submit', (e) => {
       e.preventDefault();
 
-      const name = document.getElementById('name').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const track = document.getElementById('track').value;
-      const phone = document.getElementById('phone').value.trim();
+      const parentNameInput = document.getElementById('parent_name');
+      const childAgeInput = document.getElementById('child_age');
+      const phoneInput = document.getElementById('phone');
+      const emailInput = document.getElementById('email');
 
-      if (name === '' || email === '' || track === '' || phone === '') {
+      const parentName = parentNameInput ? parentNameInput.value.trim() : '';
+      const childAge = childAgeInput ? childAgeInput.value.trim() : '';
+      const phone = phoneInput ? phoneInput.value.trim() : '';
+      const email = emailInput ? emailInput.value.trim() : '';
+
+      if (parentName === '' || childAge === '' || phone === '' || email === '') {
         showFeedback(mainFormMsg, 'Vă rugăm să completați toate câmpurile corect.', 'error');
         return;
-
       }
-
-      let lvlName = 'Curs';
-      if (track === 'level1') lvlName = 'Nivelul 1 (Începători)';
-      else if (track === 'level2') lvlName = 'Nivelul 2 (Exploratori)';
-      else if (track === 'level3') lvlName = 'Nivelul 3 (Avansați)';
 
       const submitBtn = applyForm.querySelector('button[type="submit"]');
       const originalText = submitBtn.textContent;
-      submitBtn.textContent = 'Se trimite înscrierea...';
+      submitBtn.textContent = 'Se trimite cererea...';
       submitBtn.disabled = true;
 
       setTimeout(() => {
         submitBtn.textContent = originalText;
         submitBtn.disabled = false;
 
-        let feedbackText = '';
-        if (track === 'level2') {
-          feedbackText = `Vă mulțumim, ${name}! Cererea dvs. de înscriere la Nivelul 2 a fost înregistrată. Vă vom trimite confirmarea pe adresa ${email} în cel mai scurt timp.`;
-        } else {
-          feedbackText = `Vă mulțumim, ${name}! Ați fost înscris în lista de așteptare pentru ${lvlName}. Vă vom notifica la adresa ${email} când dăm startul.`;
-        }
+        const feedbackText = `Vă mulțumim, ${parentName}! Ați fost adăugat cu succes pe lista de așteptare pentru Nivelul Start (10-12 ani). Vă vom contacta la numărul ${phone} și pe email (${email}) odată ce se eliberează un loc în cohortă.`;
 
         showFeedback(mainFormMsg, feedbackText, 'success');
         applyForm.reset();
-
-        // Retain selection after reset
-        trackDropdown.value = track;
       }, 1200);
     });
   }

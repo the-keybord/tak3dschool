@@ -1327,4 +1327,230 @@ footer p {
   }
 }
 
+/* ==========================================================================
+   De ce să alegi 3D School (2 Coloane x 3 Carduri Orizontale Mici)
+   ========================================================================== */
+.why-choose-section-two-cols {
+  padding: 36px 0;
+  background-color: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+}
+
+.why-two-cols-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+@media (max-width: 768px) {
+  .why-two-cols-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+.why-col-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.why-col-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #000000;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.why-col-title small {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+}
+
+.why-col-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.why-horizontal-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: #FFFFFF;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--primary);
+  border-radius: 6px;
+  padding: 10px 14px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+  transition: var(--transition);
+}
+
+.why-horizontal-card:hover {
+  box-shadow: var(--shadow-1);
+  transform: translateX(2px);
+}
+
+.why-horizontal-card .card-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.why-horizontal-card .card-text h5 {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #000000;
+  margin-bottom: 2px;
+  line-height: 1.2;
+}
+
+.why-horizontal-card .card-text p {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-bottom: 0;
+  line-height: 1.35;
+}
+
+/* ==========================================================================
+   Anatomia celor 120 de minute (Secțiune Compactă & Statică)
+   ========================================================================== */
+.anatomy-section-compact {
+  padding: 36px 0;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid var(--border);
+}
+
+.anatomy-compact-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.anatomy-compact-header h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #000000;
+  margin-bottom: 4px;
+}
+
+.anatomy-compact-header p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 0;
+}
+
+.anatomy-compact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+}
+
+.anatomy-compact-item {
+  background-color: #FAF9F6;
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--primary);
+  border-radius: 6px;
+  padding: 14px 12px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.anatomy-time {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.anatomy-compact-item h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #000000;
+  margin-bottom: 6px;
+  line-height: 1.2;
+}
+
+.anatomy-compact-item p {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-bottom: 0;
+  line-height: 1.4;
+}
+
+/* ==========================================================================
+   Logistica pe scurt Section
+   ========================================================================== */
+.logistics-section {
+  padding: 60px 0;
+  background-color: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+}
+
+.logistics-card {
+  background-color: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 40px;
+  box-shadow: var(--shadow-1);
+}
+
+.logistics-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.logistics-header h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #000000;
+  margin-bottom: 8px;
+}
+
+.logistics-subtitle {
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+.logistics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.logistics-item {
+  background-color: #FAF9F6;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 24px;
+}
+
+.logistics-badge {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.logistics-item h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #000000;
+  margin-bottom: 10px;
+}
+
+.logistics-item p {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin-bottom: 0;
+  line-height: 1.55;
+}
+
+
 
