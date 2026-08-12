@@ -58,6 +58,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (updateHistory && history.replaceState) {
       history.replaceState(null, null, `#${levelId}`);
     }
+
+    // Trigger resize after DOM display update so Three.js canvases recalculate dimensions
+    setTimeout(() => {
+      window.dispatchEvent(new Event('resize'));
+    }, 50);
   }
 
   // Parse direct link from URL (e.g., #level1, #level2, #level3, ?level=level1, ?level=2)
@@ -146,45 +151,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-  // 5. Interactive Curriculum Accordion Logic
-  const accordionPanels = document.querySelectorAll('.accordion-panel');
+  // 5. Interactive Curriculum Accordion Logic (Scoped per section)
+  const accordionSections = document.querySelectorAll('.accordion-section');
+  accordionSections.forEach(section => {
+    const panels = section.querySelectorAll('.accordion-panel');
 
-  function syncVideos() {
-    accordionPanels.forEach(p => {
-      const video = p.querySelector('.panel-bg-video');
-      if (video) {
-        if (p.classList.contains('active')) {
-          video.play().catch(err => {
-            // Handle browser autoplay policy restriction if any
-            console.log("Autoplay check: ", err);
-          });
-        } else {
-          video.pause();
+    function syncSectionVideos() {
+      panels.forEach(p => {
+        const video = p.querySelector('.panel-bg-video');
+        if (video) {
+          if (p.classList.contains('active')) {
+            video.play().catch(err => {
+              console.log("Autoplay check: ", err);
+            });
+          } else {
+            video.pause();
+          }
         }
-      }
-    });
-  }
-
-  if (accordionPanels.length > 0) {
-    // Initial active panel video playback
-    syncVideos();
-
-    accordionPanels.forEach(panel => {
-      panel.addEventListener('click', () => {
-        // Do nothing if the panel is already active
-        if (panel.classList.contains('active')) return;
-
-        // Remove active class from all other panels
-        accordionPanels.forEach(p => p.classList.remove('active'));
-
-        // Add active class to clicked panel
-        panel.classList.add('active');
-
-        // Sync playback states
-        syncVideos();
       });
-    });
-  }
+    }
+
+    if (panels.length > 0) {
+      syncSectionVideos();
+
+      panels.forEach(panel => {
+        panel.addEventListener('click', () => {
+          if (panel.classList.contains('active')) return;
+          panels.forEach(p => p.classList.remove('active'));
+          panel.classList.add('active');
+          syncSectionVideos();
+        });
+      });
+    }
+  });
 
 
   function showFeedback(element, text, type) {
@@ -206,7 +205,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // 6. Dynamic Relocation of Mentor Card for Mobile Layout
 
 
-  // 7. Interactive 3D STL Viewer using Three.js
+  // 7. Interactive 3D STL Viewer using Three.js (Level 2: Start - Rotating)
   function initStlViewer() {
     const container = document.getElementById('stl-viewer');
     if (!container) return;
@@ -342,7 +341,7 @@ document.addEventListener('DOMContentLoaded', () => {
           camera.bottom = currentFrustumSize / -2;
           camera.updateProjectionMatrix();
 
-          // Setup swap interval (every 2 seconds)
+          // Setup swap interval (faster swap: every 1.5 seconds)
           let activeIndex = 0;
           setInterval(() => {
             const oldIndex = activeIndex;
@@ -361,8 +360,8 @@ document.addEventListener('DOMContentLoaded', () => {
             targetFrustumSize = activeRadius * 2.0;
 
             // Trigger a high-speed spin burst (twist effect)
-            spinVelocity = 0.18;
-          }, 2000);
+            spinVelocity = 0.22;
+          }, 1500);
 
           // Animate loop
           function animate() {
@@ -411,20 +410,238 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    window.addEventListener('resize', () => {
+    function handleResizeLevel2() {
       const width = container.clientWidth;
       const height = container.clientHeight;
-      aspect = width / height;
-
-      // Update camera projection on resize
-      if (typeof currentModelRadius !== 'undefined') {
-        targetFrustumSize = currentModelRadius * 2.0;
+      if (width > 0 && height > 0) {
+        aspect = width / height;
+        if (typeof currentModelRadius !== 'undefined') {
+          targetFrustumSize = currentModelRadius * 2.0;
+        }
+        renderer.setSize(width, height);
+        camera.left = currentFrustumSize * aspect / -2;
+        camera.right = currentFrustumSize * aspect / 2;
+        camera.top = currentFrustumSize / 2;
+        camera.bottom = currentFrustumSize / -2;
+        camera.updateProjectionMatrix();
       }
-      renderer.setSize(width, height);
-    });
+    }
+
+    window.addEventListener('resize', handleResizeLevel2);
+    setTimeout(handleResizeLevel2, 100);
   }
 
-  // Initialize STL Viewer
+  // 8. Interactive 3D STL Viewer using Three.js (Level 3: Pro - Floating levitation, NO ROTATION)
+  function initStlViewerPro() {
+    const container = document.getElementById('stl-viewer-pro');
+    if (!container) return;
+
+    const spinner = container.querySelector('.stl-loader-spinner');
+
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+
+    const files = shuffleArray(['clopotel.stl', 'arculUmf.stl', 'cizz.stl', 'romanita.stl', 'pika.stl']);
+    const meshes = [];
+    let loadedCount = 0;
+    let currentModelRadius = 50;
+
+    const scene = new THREE.Scene();
+
+    let aspect = container.clientWidth / container.clientHeight;
+    let frustumSize = 100;
+    const camera = new THREE.OrthographicCamera(
+      frustumSize * aspect / -2,
+      frustumSize * aspect / 2,
+      frustumSize / 2,
+      frustumSize / -2,
+      0.1,
+      1000
+    );
+
+    camera.position.set(100, 100, 100);
+    camera.lookAt(scene.position);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setSize(container.clientWidth, container.clientHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.shadowMap.enabled = true;
+    container.appendChild(renderer.domElement);
+
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+    scene.add(ambientLight);
+
+    const dirLight1 = new THREE.DirectionalLight(0xfffaf0, 0.85);
+    dirLight1.position.set(120, 150, 100);
+    scene.add(dirLight1);
+
+    const dirLight2 = new THREE.DirectionalLight(0xdbe5f5, 0.45);
+    dirLight2.position.set(-100, 100, -100);
+    scene.add(dirLight2);
+
+    const loader = new THREE.STLLoader();
+
+    function getRandomOrangeColor() {
+      const orangeShades = [
+        0xff5722, // Vibrant primary orange
+        0xff9100, // Golden bright orange
+        0xe64a19  // Deep rich coral orange
+      ];
+      const randomIndex = Math.floor(Math.random() * orangeShades.length);
+      return new THREE.Color(orangeShades[randomIndex]);
+    }
+
+    let targetFrustumSize = 100;
+    let currentFrustumSize = 100;
+
+    files.forEach((file, index) => {
+      loader.load(file, function (geometry) {
+        geometry.center();
+        geometry.computeBoundingSphere();
+
+        const material = new THREE.MeshStandardMaterial({
+          color: getRandomOrangeColor(),
+          roughness: 0.3,
+          metalness: 0.15,
+          flatShading: false
+        });
+
+        const mesh = new THREE.Mesh(geometry, material);
+
+        // Fixed orientation - NO CONTINUOUS ROTATION
+        mesh.rotation.x = THREE.MathUtils.degToRad(-140);
+        mesh.rotation.y = THREE.MathUtils.degToRad(0);
+        mesh.rotation.z = THREE.MathUtils.degToRad(45);
+
+        mesh.position.x = 0;
+        mesh.position.y = 0;
+        mesh.position.z = 0;
+
+        mesh.visible = (index === 0);
+        mesh.currentOffsetY = (index === 0) ? 0 : -100;
+        mesh.targetOffsetY = (index === 0) ? 0 : -100;
+        mesh.scale.set(1, 1, 1);
+
+        scene.add(mesh);
+        meshes[index] = mesh;
+        loadedCount++;
+
+        if (loadedCount === files.length) {
+          if (spinner) {
+            spinner.style.display = 'none';
+          }
+
+          const radius = meshes[0].geometry.boundingSphere.radius;
+          currentModelRadius = radius;
+          targetFrustumSize = radius * 2.0;
+          currentFrustumSize = targetFrustumSize;
+          aspect = container.clientWidth / container.clientHeight;
+          camera.left = currentFrustumSize * aspect / -2;
+          camera.right = currentFrustumSize * aspect / 2;
+          camera.top = currentFrustumSize / 2;
+          camera.bottom = currentFrustumSize / -2;
+          camera.updateProjectionMatrix();
+
+          // Setup swap interval for Pro level: outgoing slides UP, incoming slides in from DOWN
+          let activeIndex = 0;
+          const slideDistance = radius * 2.5;
+
+          setInterval(() => {
+            const oldIndex = activeIndex;
+            activeIndex = (activeIndex + 1) % files.length;
+
+            const slideDist = currentModelRadius * 2.5;
+
+            // Outgoing model slides UP out of frame
+            meshes[oldIndex].targetOffsetY = slideDist;
+
+            // Incoming model starts DOWN below frame and slides UP to 0
+            meshes[activeIndex].currentOffsetY = -slideDist;
+            meshes[activeIndex].targetOffsetY = 0;
+            meshes[activeIndex].visible = true;
+
+            const activeRadius = meshes[activeIndex].geometry.boundingSphere.radius;
+            currentModelRadius = activeRadius;
+            targetFrustumSize = activeRadius * 2.0;
+          }, 2000);
+
+          let startTime = Date.now();
+
+          function animate() {
+            requestAnimationFrame(animate);
+
+            const elapsedTime = (Date.now() - startTime) * 0.0015;
+
+            // FLOATING LEVITATION MOVEMENT
+            const floatOffset = Math.sin(elapsedTime * 2.0) * (currentModelRadius * 0.08);
+            const pulseScale = 1 + Math.sin(elapsedTime * 1.5) * 0.02;
+
+            meshes.forEach(m => {
+              // Smooth lerp for vertical slide position
+              m.currentOffsetY = THREE.MathUtils.lerp(m.currentOffsetY || 0, m.targetOffsetY, 0.12);
+
+              // Set combined Y position (floating levitation + vertical slide offset)
+              m.position.y = floatOffset + m.currentOffsetY;
+
+              // Apply pulse scale
+              m.scale.set(pulseScale, pulseScale, pulseScale);
+
+              // Hide model when it has slid completely out of frame at the top
+              if (m.targetOffsetY > 0 && Math.abs(m.currentOffsetY - m.targetOffsetY) < 2) {
+                m.visible = false;
+              }
+            });
+
+            currentFrustumSize = THREE.MathUtils.lerp(currentFrustumSize, targetFrustumSize, 0.1);
+            const currentAspect = container.clientWidth / container.clientHeight;
+            camera.left = currentFrustumSize * currentAspect / -2;
+            camera.right = currentFrustumSize * currentAspect / 2;
+            camera.top = currentFrustumSize / 2;
+            camera.bottom = currentFrustumSize / -2;
+            camera.updateProjectionMatrix();
+
+            renderer.render(scene, camera);
+          }
+          animate();
+        }
+      }, undefined, function (error) {
+        console.error("Error loading STL file for Pro viewer:", file, error);
+        if (spinner) {
+          spinner.innerHTML = "<span style='color: var(--primary); font-size: 0.85rem;'>Eroare încărcare modele 3D</span>";
+        }
+      });
+    });
+
+    function handleResize() {
+      const width = container.clientWidth;
+      const height = container.clientHeight;
+      if (width > 0 && height > 0) {
+        aspect = width / height;
+        if (typeof currentModelRadius !== 'undefined') {
+          targetFrustumSize = currentModelRadius * 2.0;
+        }
+        renderer.setSize(width, height);
+        camera.left = currentFrustumSize * aspect / -2;
+        camera.right = currentFrustumSize * aspect / 2;
+        camera.top = currentFrustumSize / 2;
+        camera.bottom = currentFrustumSize / -2;
+        camera.updateProjectionMatrix();
+      }
+    }
+
+    window.addEventListener('resize', handleResize);
+    // Initial call after loading completes
+    setTimeout(handleResize, 100);
+  }
+
+  // Initialize STL Viewers
   initStlViewer();
+  initStlViewerPro();
 
 });
+

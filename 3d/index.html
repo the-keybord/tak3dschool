@@ -576,37 +576,410 @@
     </section>
   </div>
 
-  <!-- ================= NIVELUL 3 (ÎN LUCRU) ================= -->
+  <!-- ================= NIVELUL 3 (PRO 13-15 ANI) ================= -->
   <div id="view-level3" class="page-view">
-    <div class="wip-banner">
-      <div class="wip-banner-container">
-        <svg class="wip-banner-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-          stroke-linecap="round" stroke-linejoin="round">
-          <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
-          <line x1="12" y1="9" x2="12" y2="13"></line>
-          <line x1="12" y1="17" x2="12.01" y2="17"></line>
-        </svg>
-        <div class="wip-banner-content">
-          <span class="wip-banner-title">Lucru în curs</span>
-          <span class="wip-banner-text">Programa pentru nivelul Pro (13-15 ani) este în curs de dezvoltare. Înscrie-te
-            în lista de așteptare!</span>
-        </div>
-      </div>
-    </div>
-    <section class="inprogress-hero">
-      <div class="container">
-        <div class="inprogress-content">
-          <span class="inprogress-badge">În curs de dezvoltare</span>
-          <h1 class="inprogress-title">Pro: Avansați (13-15 ani)</h1>
-          <p class="inprogress-desc">Programa pentru Nivelul 3 este în curs de proiectare tehnică! Acest nivel va aborda
-            mecanisme complexe, asamblări multicomponent cu șuruburi/articulații, noțiuni elementare de inginerie
-            industrială și pregătire avansată pentru imprimante 3D profesionale.</p>
 
-          <p class="inprogress-note">Acest nivel este în curs de dezvoltare. Rămâi aproape!</p>
+    <!-- Hero Section (Text on Left, 3D Model Floating on Right) -->
+    <section class="hero">
+      <div class="container hero-grid">
+
+        <!-- Left Column: Hero Content -->
+        <div class="hero-content">
+          <div class="hero-badge">★ Curs Pro - Recomandat 13-15 ani</div>
+          <h1 class="hero-title">Modelare și Inginerie <span>3D Avansată</span></h1>
+          <p class="hero-desc">TAK 3D School Pro oferă un program intensiv pentru adolescenți. Învățăm modelare tehnică de precizie, asamblări mecanice complexe, toleranțe industriale și pregătire pentru softuri CAD profesionale.</p>
+          <ul class="hero-highlights">
+            <li class="hero-highlight-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span><strong>Inginerie &amp; Precizie:</strong> Toleranțe, cote exacte și asamblări cu șuruburi</span>
+            </li>
+            <li class="hero-highlight-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span><strong>Software Industriale:</strong> Trecerea la Fusion 360, Blender &amp; Scanare 3D</span>
+            </li>
+            <li class="hero-highlight-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span><strong>Print-in-Place &amp; Mecanisme:</strong> Piese mobile gata asamblate pe imprimantă</span>
+            </li>
+          </ul>
+          <div class="hero-ctas">
+            <a href="#curriculum-pro" class="btn btn-primary">Programa Cursului Pro</a>
+          </div>
+        </div>
+
+        <!-- Right Column: 3D Model Floating Viewer (Non-rotating levitation) -->
+        <div class="hero-model-container">
+          <div id="stl-viewer-pro" data-stl="clopotel.stl">
+            <div class="stl-loader-spinner"></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- First Section After Hero: Software & Technologies Showcase -->
+    <section class="software-showcase-section">
+      <div class="container">
+        <div class="software-header">
+          <h2>Dincolo de Tinkercad: Software &amp; Tehnologii Industriale</h2>
+          <p>La Nivelul Pro, elevii depășesc bazele modelării. Ei explorează aplicații avansate folosite de ingineri, arhitecți și artiști 3D din întreaga lume!</p>
+        </div>
+
+        <div class="software-grid">
+          <!-- Card 1: Tinkercad -->
+          <div class="software-card">
+            <div class="software-card-top">
+              <div class="software-icon">🧊</div>
+              <div>
+                <h4 class="software-card-title">Tinkercad</h4>
+                <span class="software-tag">Prototipare Rapidă</span>
+              </div>
+            </div>
+            <p class="software-card-desc">Construirea rapidă de concepte primare și înțelegerea geometriei fundamentale 3D.</p>
+          </div>
+
+          <!-- Card 2: Autodesk Fusion 360 -->
+          <div class="software-card">
+            <div class="software-card-top">
+              <div class="software-icon">⚙️</div>
+              <div>
+                <h4 class="software-card-title">Fusion 360</h4>
+                <span class="software-tag">CAD Parametric</span>
+              </div>
+            </div>
+            <p class="software-card-desc">Modelare ingineriască avansată cu cote exacte, toleranțe la milimetru și asamblări mecanice.</p>
+          </div>
+
+          <!-- Card 3: Blender -->
+          <div class="software-card">
+            <div class="software-card-top">
+              <div class="software-icon">🎨</div>
+              <div>
+                <h4 class="software-card-title">Blender</h4>
+                <span class="software-tag">Sculptură &amp; Randare</span>
+              </div>
+            </div>
+            <p class="software-card-desc">Modelare organică liberă, sculptură digitală detaliată și vizualizări 3D spectaculoase.</p>
+          </div>
+
+          <!-- Card 4: 3D Scanning & Slicing -->
+          <div class="software-card">
+            <div class="software-card-top">
+              <div class="software-icon">📡</div>
+              <div>
+                <h4 class="software-card-title">Scanare &amp; Slicing</h4>
+                <span class="software-tag">Digitalizare &amp; Print</span>
+              </div>
+            </div>
+            <p class="software-card-desc">Digitalizarea obiectelor reale prin scanare 3D și pregătirea avansată în Bambu Studio / PrusaSlicer.</p>
+          </div>
         </div>
       </div>
     </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+      <div class="container stats-grid">
+        <div class="stat-item">
+          <h3>40</h3>
+          <p>Lecții Avansate</p>
+        </div>
+        <div class="stat-item">
+          <h3>13-15</h3>
+          <p>Ani</p>
+        </div>
+        <div class="stat-item">
+          <h3>120</h3>
+          <p>Minute per Ședință</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- De ce să alegi 3D School Pro? -->
+    <section class="why-choose-section-two-cols">
+      <div class="container">
+        <div class="why-compact-header">
+          <h3>De ce să alegi 3D School Pro?</h3>
+          <p>Pregătire ingineriască de viitor și abilități tehnice reale</p>
+        </div>
+
+        <div class="why-two-cols-grid">
+          <!-- Column 1: Pentru Părinți -->
+          <div class="why-col-group">
+            <h4 class="why-col-title">👨‍👩‍👧‍👦 Pentru Părinți <small>(Abilități Industriale)</small></h4>
+            <div class="why-col-cards">
+              <div class="why-horizontal-card">
+                <div class="card-icon">🎯</div>
+                <div class="card-text">
+                  <h5>Portofoliu Tehnic Real</h5>
+                  <p>Mecanisme funcționale și piese proiectate precis la fiecare modul.</p>
+                </div>
+              </div>
+              <div class="why-horizontal-card">
+                <div class="card-icon">🧠</div>
+                <div class="card-text">
+                  <h5>Gândire Ingineriască</h5>
+                  <p>Înțelegerea toleranțelor, a fizicii aplicate și a rezistenței materialelor.</p>
+                </div>
+              </div>
+              <div class="why-horizontal-card">
+                <div class="card-icon">💻</div>
+                <div class="card-text">
+                  <h5>Softuri Professionale CAD</h5>
+                  <p>Experiență directă pe Fusion 360, Blender și Slicere avansate.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Column 2: Pentru Elevi -->
+          <div class="why-col-group">
+            <h4 class="why-col-title">🚀 Pentru Elevi <small>(Proiectare Fără Limite)</small></h4>
+            <div class="why-col-cards">
+              <div class="why-horizontal-card">
+                <div class="card-icon">⚙️</div>
+                <div class="card-text">
+                  <h5>Construiești Mecanisme</h5>
+                  <p>Angrenaje, rulmenți, carcase și ansambluri mobile articulate.</p>
+                </div>
+              </div>
+              <div class="why-horizontal-card">
+                <div class="card-icon">👥</div>
+                <div class="card-text">
+                  <h5>Echipă de Viitori Ingineri</h5>
+                  <p>Colaborare pe proiecte complexe și schimb de idei tehnice.</p>
+                </div>
+              </div>
+              <div class="why-horizontal-card">
+                <div class="card-icon">⚡</div>
+                <div class="card-text">
+                  <h5>Tehnologia Viitorului</h5>
+                  <p>Imprimante 3D rapide, scanere 3D și echipamente profesionale.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Anatomia celor 120 de minute -->
+    <section class="anatomy-section-compact">
+      <div class="container">
+        <div class="anatomy-compact-header">
+          <h3>Anatomia celor 120 de minute (Nivel Pro)</h3>
+          <p>Fluxul unei ședințe avansate: riguros, tehnic și axat pe creație</p>
+        </div>
+
+        <div class="anatomy-compact-grid">
+          <div class="anatomy-compact-item">
+            <span class="anatomy-time">Min 0-20</span>
+            <h4>Start &amp; Calibrare</h4>
+            <p>Pregătirea slicer-ului, verificarea toleranțelor și pornirea printurilor.</p>
+          </div>
+
+          <div class="anatomy-compact-item">
+            <span class="anatomy-time">Min 20-40</span>
+            <h4>Concepte CAD</h4>
+            <p>Analiză tehnică, schițe cotate și principii de inginerie 3D.</p>
+          </div>
+
+          <div class="anatomy-compact-item">
+            <span class="anatomy-time">Min 40-50</span>
+            <h4>Pauză (10 min)</h4>
+            <p>Timp pentru relaxare, discuții tehnice și networking.</p>
+          </div>
+
+          <div class="anatomy-compact-item">
+            <span class="anatomy-time">Min 50-70</span>
+            <h4>Demonstrație Live</h4>
+            <p>Profesorul arată tehnici avansate în Fusion 360 / Blender.</p>
+          </div>
+
+          <div class="anatomy-compact-item">
+            <span class="anatomy-time">Min 70-110</span>
+            <h4>Proiectare (40 min)</h4>
+            <p>Elevii modelează propriile mecanisme aplicând formulele și cotele.</p>
+          </div>
+
+          <div class="anatomy-compact-item">
+            <span class="anatomy-time">Min 110-120</span>
+            <h4>Testare &amp; Asamblare</h4>
+            <p>Asamblarea pieselor printate, testarea toleranțelor și concluzii.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 Profesii ale Viitorului (Pro Level Accordion) -->
+    <section class="accordion-section" id="curriculum-pro">
+      <div class="container" style="text-align: center; margin-bottom: 28px;">
+        <h2 style="font-size: 2.1rem; font-weight: 700; color: #000; margin-bottom: 10px;">4 Profesii ale Viitorului pe care le va Experimenta Copilul Tău</h2>
+        <p style="max-width: 780px; margin: 0 auto; color: var(--text-secondary); font-size: 1.05rem; line-height: 1.6;">
+          Pe parcursul cursului Pro, elevii explorează 4 roluri fascinante: de la inginerie de precizie și design industrial de produs, până la arhitectură avansată și modelare științifică!
+        </p>
+      </div>
+      <div class="accordion-container">
+
+        <!-- Panel 1: Inginerul 3D (New Profession for Pro Level) -->
+        <div class="accordion-panel active" data-panel="0">
+          <video src="3d2Intro.mp4" loop muted playsinline class="panel-bg-video"></video>
+          <div class="panel-video-overlay"></div>
+          <div class="panel-inner-valign">
+            <div class="panel-header-content">
+              <span class="panel-num">Inginerie &amp; Modelare Tehnică</span>
+              <h3 class="panel-title">Inginerul 3D</h3>
+            </div>
+
+            <div class="panel-body-content">
+              <p class="panel-desc">
+                <strong>Învață:</strong> Modelare de precizie, cote tehnice, toleranțe de îmbinare și constrângeri geometrice.<br>
+                <strong>Creează:</strong> Piese mecanice potrivite la milimetru, angrenaje, carcase tehnice și mecanisme mobile.
+              </p>
+            </div>
+
+            <div class="panel-visual">
+              <img src="assets/topic2.svg" alt="Inginerul 3D" class="panel-svg">
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel 2: Designerul de Produs -->
+        <div class="accordion-panel" data-panel="1">
+          <video src="3d2Toys.mp4" loop muted playsinline class="panel-bg-video"></video>
+          <div class="panel-video-overlay"></div>
+          <div class="panel-inner-valign">
+            <div class="panel-header-content">
+              <span class="panel-num">Inginerie &amp; Inovație</span>
+              <h3 class="panel-title">Designerul de Produs</h3>
+            </div>
+
+            <div class="panel-body-content">
+              <p class="panel-desc">
+                <strong>Învață:</strong> Ingineria interacțiunii mecanice și design industrial.<br>
+                <strong>Creează:</strong> Spinnere, jucării antistres, piese de șah și gadgeturi.
+              </p>
+            </div>
+
+            <div class="panel-visual">
+              <img src="assets/topic2.svg" alt="Designerul de Produs" class="panel-svg">
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel 3: Arhitectul -->
+        <div class="accordion-panel" data-panel="2">
+          <video src="3d2Arhitect.mp4" loop muted playsinline class="panel-bg-video"></video>
+          <div class="panel-video-overlay"></div>
+          <div class="panel-inner-valign">
+            <div class="panel-header-content">
+              <span class="panel-num">Viziune &amp; Geometrie</span>
+              <h3 class="panel-title">Arhitectul</h3>
+            </div>
+
+            <div class="panel-body-content">
+              <p class="panel-desc">
+                <strong>Învață:</strong> Scara, proporțiile, geometria structurilor complexe.<br>
+                <strong>Creează:</strong> Machete de zgârie-nori, poduri rezistente și structuri futuriste.
+              </p>
+            </div>
+
+            <div class="panel-visual">
+              <img src="assets/topic3.svg" alt="Arhitectul" class="panel-svg">
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel 4: Exploratorul -->
+        <div class="accordion-panel" data-panel="3">
+          <video src="3d2Nature.mp4" loop muted playsinline class="panel-bg-video"></video>
+          <div class="panel-video-overlay"></div>
+          <div class="panel-inner-valign">
+            <div class="panel-header-content">
+              <span class="panel-num">Știință &amp; Modelare Organică</span>
+              <h3 class="panel-title">Exploratorul</h3>
+            </div>
+
+            <div class="panel-body-content">
+              <p class="panel-desc">
+                <strong>Învață:</strong> Sculptură digitală organică și scanare 3D.<br>
+                <strong>Creează:</strong> Modele anatomice, cranii de dinozaur și obiecte scanate 3D.
+              </p>
+            </div>
+
+            <div class="panel-visual">
+              <img src="assets/topic4.svg" alt="Exploratorul" class="panel-svg">
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Mentor Section (Spotlight) -->
+    <section class="mentor-section">
+      <div class="container">
+        <div class="mentor-card">
+          <div class="mentor-image-container">
+            <img src="mentorA.png" alt="Andrian Bocancea" class="mentor-img">
+          </div>
+          <div class="mentor-info-container">
+            <div class="mentor-title-info">
+              <span class="mentor-job">Mentor Principal 3D</span>
+              <h3 class="mentor-name">Andrian Bocancea</h3>
+            </div>
+            <p class="mentor-bio">Specialist în modelare digitală și inginerie STEM cu o experiență de peste 6 ani în utilizarea tehnologiilor de printare 3D. Andrian ghidează elevii pas cu pas de la noțiunile de bază de modelare până la realizarea practică a mecanismelor mobile complexe.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Showcase Section -->
+    <section class="start-showcase-section" style="padding: 50px 0; background-color: #FFFFFF; border-bottom: 1px solid var(--border);">
+      <div class="container" style="text-align: center;">
+        <h2 style="font-size: 2.1rem; font-weight: 700; color: #000; margin-bottom: 12px;">Exemple de Proiecte Pro Realizate de Elevi</h2>
+        <p style="max-width: 780px; margin: 0 auto 36px auto; color: var(--text-secondary); font-size: 1.05rem; line-height: 1.6;">
+          Iată o mostră a obiectelor 3D realizate de elevii din nivelul avansat: mecanisme de angrenaj, carcases tehnice, machete de arhitectură detaliate și modele scanate 3D!
+        </p>
+        <div style="max-width: 1000px; margin: 0 auto; border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-2); border: 1px solid var(--border);">
+          <img src="assets/start_projects_showcase.jpg" alt="Exemple Proiecte Realizate de Elevi la Cursul Pro" style="width: 100%; height: auto; display: block;">
+        </div>
+      </div>
+    </section>
+
+    <!-- Logistica pe scurt -->
+    <section class="logistics-section">
+      <div class="container">
+        <div class="logistics-card">
+          <div class="logistics-header">
+            <h2>Cum funcționează înscrierile?</h2>
+            <p class="logistics-subtitle">Această secțiune explică sistemul nostru de cohorte și modul de admitere.</p>
+          </div>
+          <div class="logistics-grid">
+            <div class="logistics-item">
+              <div class="logistics-badge">🔒 Proces Exclusivist</div>
+              <h4>Sistem bazat pe Cohorte</h4>
+              <p>Grupele noastre funcționează sub formă de cohortă. Asta înseamnă că o echipă începe și termină cursul împreună, creând o dinamică excelentă de grup.</p>
+            </div>
+            <div class="logistics-item">
+              <div class="logistics-badge">📅 Când te poți înscrie?</div>
+              <h4>Admitere la Început de Modul</h4>
+              <p>Noi elevi sunt acceptați <strong>doar la începutul fiecărui nou modul</strong> (Profesie) și <strong>doar în limita locurilor eliberate</strong>. Astfel, ne asigurăm că nimeni nu rămâne în urmă cu materia.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </div>
+
 
 
 

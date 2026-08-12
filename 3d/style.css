@@ -1263,7 +1263,8 @@ footer p {
   }
 }
 
-#stl-viewer {
+#stl-viewer,
+#stl-viewer-pro {
   width: 100%;
   height: 100%;
   background-color: transparent; /* Transparent so it floats on the page */
@@ -1272,7 +1273,8 @@ footer p {
   overflow: hidden;
 }
 
-#stl-viewer canvas {
+#stl-viewer canvas,
+#stl-viewer-pro canvas {
   width: 100% !important;
   height: 100% !important;
   display: block;
@@ -1551,6 +1553,108 @@ footer p {
   margin-bottom: 0;
   line-height: 1.55;
 }
+
+/* ==========================================================================
+   Software & Tools Showcase Section (Pro Level)
+   ========================================================================== */
+.software-showcase-section {
+  padding: 60px 0;
+  background-color: #FAF9F6;
+  border-bottom: 1px solid var(--border);
+}
+
+.software-header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 36px auto;
+}
+
+.software-header h2 {
+  font-size: 2.1rem;
+  font-weight: 700;
+  color: #000000;
+  margin-bottom: 12px;
+}
+
+.software-header p {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.software-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.software-card {
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: var(--shadow-1);
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.software-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-2);
+  border-color: var(--primary);
+}
+
+.software-card-top {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.software-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  background-color: #000000;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.software-card-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #000000;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.software-tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--primary-dark);
+  background-color: var(--primary-light);
+  padding: 2px 8px;
+  border-radius: 3px;
+  margin-top: 4px;
+}
+
+.software-card-desc {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
 
 
 
