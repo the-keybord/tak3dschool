@@ -16,3 +16,8 @@ These are strict rules that must be followed for all modifications to this codeb
 - **No backend technologies.**
 - The project is strictly a static frontend landing page (HTML, CSS, and client-side JavaScript).
 - It must be lightweight, simple, and runnable on any basic/cheap static hosting service (e.g., GitHub Pages, Netlify, Vercel, or simple shared hosting).
+
+## 4. Browser Testing & Previewing
+- **Do NOT automatically open, preview, or test web pages using automated browser tools (e.g. browser subagents).**
+- Only provide the server link (e.g., http://localhost:3000) in responses so the user can manually open and inspect the page.
+

@@ -278,15 +278,53 @@ header {
 .hero-media-container {
   display: flex;
   justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 .hero-img {
   width: 100%;
-  max-width: 460px;
+  max-width: 480px;
   height: auto;
-  border-radius: 12px;
+  border-radius: 16px;
   box-shadow: var(--shadow-2);
   border: 1px solid var(--border);
+}
+
+.hero-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Dedicated Main Showcase Image Section */
+.main-showcase-section {
+  padding: 3rem 0;
+  background-color: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.main-showcase-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--shadow-2);
+  border: 1px solid var(--border);
+  background-color: #FFFFFF;
+  padding: 1rem;
+}
+
+.main-showcase-img {
+  width: 100%;
+  max-width: 100%;
+  max-height: 750px;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  border-radius: 14px;
 }
 
 .hero-badge-group {
@@ -505,30 +543,159 @@ header {
   margin-bottom: 1.2rem;
 }
 
-/* Media Box Placeholder for User Uploads */
-.roadmap-media-box {
-  background-color: var(--bg-secondary);
-  border: 2px dashed var(--border);
-  border-radius: 8px;
-  padding: 2.2rem 1.5rem;
-  text-align: center;
-  color: var(--text-secondary);
-  transition: var(--transition);
+/* Media Box & Step Carousel Component (Hidden until step is active/focused) */
+.step-carousel {
+  position: relative;
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #121212;
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+  margin-top: 0;
+  max-height: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease, margin-top 0.35s ease;
 }
 
-.roadmap-media-box:hover {
-  border-color: var(--primary);
-  background-color: var(--primary-light);
+.roadmap-item.active .step-carousel {
+  margin-top: 1.2rem;
+  max-height: 400px;
+  opacity: 1;
+  pointer-events: auto;
 }
 
-.media-box-label {
-  font-size: 0.88rem;
-  font-weight: 600;
-  color: var(--text-secondary);
+.carousel-track-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  min-height: 220px;
+  background-color: #1A1A1A;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.carousel-slide {
+  min-width: 100%;
+  box-sizing: border-box;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+}
+
+.carousel-slide img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  display: block;
+}
+
+.carousel-placeholder {
+  width: 100%;
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #1E1E1E 0%, #2A2A2A 100%);
+  color: #FFFFFF;
+  border: 2px dashed rgba(255, 107, 0, 0.4);
+  padding: 1.5rem;
+  text-align: center;
+  gap: 0.4rem;
+}
+
+.carousel-placeholder-icon {
+  font-size: 2.2rem;
+}
+
+.carousel-placeholder-name {
+  font-weight: 700;
+  color: #FF6B00;
+  font-size: 0.92rem;
+  background: rgba(255, 107, 0, 0.12);
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 107, 0, 0.3);
+  font-family: monospace;
+}
+
+.carousel-placeholder-hint {
+  font-size: 0.82rem;
+  color: #9E9E9E;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: rgba(18, 18, 18, 0.8);
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  cursor: pointer;
+  z-index: 5;
+  transition: all 0.2s ease;
+}
+
+.carousel-btn:hover {
+  background-color: #FF6B00;
+  color: #FFFFFF;
+  border-color: #FF6B00;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-btn-prev {
+  left: 10px;
+}
+
+.carousel-btn-next {
+  right: 10px;
+}
+
+.carousel-dots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  z-index: 5;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.4);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.25s ease;
+}
+
+.carousel-dot.active {
+  background-color: #FF6B00;
+  width: 20px;
+  border-radius: 10px;
 }
 
 .step-tag {
@@ -1030,6 +1197,10 @@ footer {
     gap: 2rem;
   }
 
+  .hero-media-container {
+    min-height: 320px;
+  }
+
   .header-container {
     flex-direction: column;
     height: auto;
@@ -1155,3 +1326,90 @@ footer {
     width: 100%;
   }
 }
+
+/* Competition Page View Styles */
+.inprogress-hero {
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.inprogress-content {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.inprogress-badge {
+  display: inline-block;
+  font-size: 0.82rem;
+  font-weight: 800;
+  padding: 0.35rem 1rem;
+  border-radius: 50px;
+  background-color: rgba(255, 107, 0, 0.15);
+  color: var(--primary-orange, #FF6B00);
+  border: 1px solid rgba(255, 107, 0, 0.4);
+  margin-bottom: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.inprogress-title {
+  font-size: 2.4rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  color: var(--text-light, #FFFFFF);
+}
+
+.inprogress-desc {
+  font-size: 1.1rem;
+  color: var(--text-muted, #9E9E9E);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  max-width: 680px;
+}
+
+.competition-media-card {
+  width: 100%;
+  max-width: 750px;
+  border-radius: 16px;
+  overflow: hidden;
+  background-color: #1A1A1A;
+  border: 1px solid rgba(255, 107, 0, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  margin-bottom: 2rem;
+  transition: transform 0.3s ease;
+}
+
+.competition-media-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 36px rgba(255, 107, 0, 0.15);
+}
+
+.competition-img {
+  width: 100%;
+  max-height: 420px;
+  object-fit: cover;
+  display: block;
+}
+
+.competition-img-caption {
+  padding: 1rem 1.5rem;
+  background-color: #141414;
+  color: #E0E0E0;
+  font-size: 0.92rem;
+  font-weight: 600;
+  border-top: 1px solid #2A2A2A;
+  text-align: center;
+}
+
+.inprogress-note {
+  font-size: 0.95rem;
+  color: var(--text-muted, #9E9E9E);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+

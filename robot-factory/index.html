@@ -7,6 +7,19 @@
   <meta name="description"
     content="TAK Robot Factory - Academie de robotică, mecatronică și programare. Construiește propriul robot pe care îl iei acasă!">
   <title>TAK Robot Factory | Robotică & Automatizări</title>
+
+  <!-- Open Graph / Chat Link Sharing Preview (WhatsApp, Telegram, Facebook, Viber, iMessage) -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="TAK Robot Factory | Robotică & Automatizări">
+  <meta property="og:description" content="Academie de robotică, mecatronică și programare. Construiește propriul robot pe care îl iei acasă!">
+  <meta property="og:image" content="robotfactory_preview_card.png">
+
+  <!-- Twitter / Social Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="TAK Robot Factory | Robotică & Automatizări">
+  <meta name="twitter:description" content="Academie de robotică, mecatronică și programare. Construiește propriul robot pe care îl iei acasă!">
+  <meta name="twitter:image" content="robotfactory_preview_card.png">
+
   <link rel="stylesheet" href="style.css?v=3.0">
 </head>
 
@@ -26,31 +39,31 @@
       </div>
 
       <div class="header-level-tabs">
-        <button class="header-level-tab active" data-level="level1">LEVEL 1</button>
-        <button class="header-level-tab" data-level="level2">LEVEL 2</button>
-        <button class="header-level-tab" data-level="level3">PRO</button>
+        <button class="header-level-tab active" data-level="creation">CREATION</button>
+        <button class="header-level-tab" data-level="evolution">EVOLUTION</button>
+        <button class="header-level-tab" data-level="competition">COMPETITION</button>
       </div>
 
     </div>
   </header>
 
-  <!-- ================= NIVELUL 1 (ACTIV & DETALIAT) ================= -->
-  <div id="view-level1" class="page-view active">
+  <!-- ================= CREATION (ACTIV & DETALIAT) ================= -->
+  <div id="view-creation" class="page-view active">
 
-    <!-- Hero Section Level 1 -->
+    <!-- Hero Section Creation -->
     <section class="hero">
       <div class="container hero-grid">
         <div class="hero-media-container">
-          <img src="assets/hero_robot.svg" alt="Robot Factory Level 1 Smart Car" class="hero-img">
+          <img src="assets/RFcreation_hero.png" alt="Robot Factory Creation Smart Car" class="hero-img">
         </div>
-
+ 
         <div class="hero-content">
           <div class="hero-badge-group">
-            <span class="hero-badge">★ Curs Principal - Level 1</span>
+            <span class="hero-badge">★ Curs Principal - Creation</span>
             <span class="hero-badge-novelty">🔥 Noutate: Platforma BBC micro:bit</span>
           </div>
 
-          <h1 class="hero-title">Robot Factory <span>Level 1</span></h1>
+          <h1 class="hero-title">Robot Factory <span>Creation</span></h1>
           
           <div class="take-home-card">
             <div class="take-home-icon">🎁</div>
@@ -61,13 +74,22 @@
           </div>
 
           <p class="hero-desc">
-            La Level 1, elevii devin adevărați creatori. Înveți proiectare 3D în Fusion 360, imprimare 3D, asamblare electronică, lipit și programare pe noua platformă <strong>BBC micro:bit</strong>!
+            La nivelul <strong>Creation</strong>, elevii devin adevărați creatori. Înveți proiectare 3D în Fusion 360, imprimare 3D, asamblare electronică, lipit și programare pe noua platformă <strong>BBC micro:bit</strong>!
           </p>
 
           <div class="hero-ctas">
             <a href="#etape" class="btn btn-primary">Vezi Cele 5 Etape</a>
-            <a href="#inscriere" class="btn btn-secondary">Înscrie-te la Level 1</a>
+            <a href="#inscriere" class="btn btn-secondary">Înscrie-te la Creation</a>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dedicated Feature Image Showcase Section -->
+    <section class="main-showcase-section">
+      <div class="container">
+        <div class="main-showcase-card">
+          <img src="create_main_picutre.png" alt="TAK Robot Factory Creation Smart Robot" class="main-showcase-img" onerror="this.onerror=null; this.src='assets/create_main_picutre.png';">
         </div>
       </div>
     </section>
@@ -77,7 +99,7 @@
       <div class="container">
         <div class="section-header">
           <span class="section-badge">Metodologie Practică</span>
-          <h2 class="section-title">Etapele Cursului Level 1</h2>
+          <h2 class="section-title">Etapele Cursului Creation</h2>
           <p class="section-subtitle">Fiecare elev parcurge întregul ciclu ingineresc, de la idee și schiță 3D la competiția finală.</p>
         </div>
 
@@ -103,10 +125,18 @@
               <p class="roadmap-desc">
                 Învățăm să lucrăm în <strong>Autodesk Fusion 360</strong>. Proiectăm componentele robotului, carcasa și suporturile pentru senzori direct în spațiu 3D.
               </p>
-              <!-- Media Placeholder for User Uploads -->
-              <div class="roadmap-media-box">
-                <span class="media-box-label">📷 Spațiu Media / Poze & Demo Modele Fusion 360</span>
+              
+              <!-- Carousel for Step 1 -->
+              <div class="step-carousel" data-carousel="step1">
+                <div class="carousel-track-container">
+                  <ul class="carousel-track">
+                    <li class="carousel-slide">
+                      <img src="assets/step1_modeleaza_1.jpg" alt="Modelează 3D Fusion 360" class="carousel-img">
+                    </li>
+                  </ul>
+                </div>
               </div>
+
             </div>
           </div>
 
@@ -126,9 +156,18 @@
               <p class="roadmap-desc">
                 Pregătim fișierele pentru printat (slicing) și folosim imprimante 3D profesionale pentru a da viață pieselor din plastic rezistent.
               </p>
-              <div class="roadmap-media-box">
-                <span class="media-box-label">📷 Spațiu Media / Poze Printare 3D Robot</span>
+              
+              <!-- Carousel for Step 2 -->
+              <div class="step-carousel" data-carousel="step2">
+                <div class="carousel-track-container">
+                  <ul class="carousel-track">
+                    <li class="carousel-slide">
+                      <img src="assets/step2_printeaza_1.jpg" alt="Printare 3D" class="carousel-img">
+                    </li>
+                  </ul>
+                </div>
               </div>
+
             </div>
           </div>
 
@@ -148,9 +187,18 @@
               <p class="roadmap-desc">
                 Montăm șuruburi, piulițe, rotile și motoarele. Învățăm conexiuni electronice, folosirea flitului (soldering/lipire) și legarea circuitelor.
               </p>
-              <div class="roadmap-media-box">
-                <span class="media-box-label">📷 Spațiu Media / Poze Asamblare & Flit/Lipit</span>
+              
+              <!-- Carousel for Step 3 -->
+              <div class="step-carousel" data-carousel="step3">
+                <div class="carousel-track-container">
+                  <ul class="carousel-track">
+                    <li class="carousel-slide">
+                      <img src="assets/step3_asambleaza_1.jpg" alt="Asamblare Mecanică" class="carousel-img">
+                    </li>
+                  </ul>
+                </div>
               </div>
+
             </div>
           </div>
 
@@ -170,9 +218,27 @@
               <p class="roadmap-desc">
                 Trecem pe noua platformă <strong>BBC micro:bit</strong>! Învățăm algoritmi, senzoristică și codare prin blocuri vizuale și Python.
               </p>
-              <div class="roadmap-media-box">
-                <span class="media-box-label">📷 Spațiu Media / Poze Programare micro:bit</span>
+              
+              <!-- Carousel for Step 4 -->
+              <div class="step-carousel" data-carousel="step4">
+                <div class="carousel-track-container">
+                  <ul class="carousel-track">
+                    <li class="carousel-slide">
+                      <img src="assets/step4_programeaza_1.jpg" alt="Programare BBC micro:bit - Poza 1" class="carousel-img">
+                    </li>
+                    <li class="carousel-slide">
+                      <img src="assets/step4_programeaza_2.jpg" alt="Programare BBC micro:bit - Poza 2" class="carousel-img">
+                    </li>
+                  </ul>
+                </div>
+                <button class="carousel-btn carousel-btn-prev" aria-label="Imaginea anterioară">❮</button>
+                <button class="carousel-btn carousel-btn-next" aria-label="Imaginea următoare">❯</button>
+                <div class="carousel-dots">
+                  <button class="carousel-dot active" data-index="0" aria-label="Slide 1"></button>
+                  <button class="carousel-dot" data-index="1" aria-label="Slide 2"></button>
+                </div>
               </div>
+
             </div>
           </div>
 
@@ -192,9 +258,18 @@
               <p class="roadmap-desc">
                 Participăm la marea competiție <strong>Tekwill Robotics Contest</strong> (aflată la a 2-a ediție organizată de noi!). Roboții construiți de elevi se întrec pe categorii variate, cu mari provocări inginerești și premii!
               </p>
-              <div class="roadmap-media-box">
-                <span class="media-box-label">📷 Spațiu Media / Poze & Video Tekwill Robotics Contest</span>
+              
+              <!-- Carousel for Step 5 -->
+              <div class="step-carousel" data-carousel="step5">
+                <div class="carousel-track-container">
+                  <ul class="carousel-track">
+                    <li class="carousel-slide">
+                      <img src="assets/step5_concureaza_1.jpg" alt="Tekwill Robotics Contest - Roboți de Competiție" class="carousel-img">
+                    </li>
+                  </ul>
+                </div>
               </div>
+
             </div>
           </div>
 
@@ -204,12 +279,12 @@
 
 
 
-    <!-- Registration Section Level 1 -->
+    <!-- Registration Section Creation -->
     <section id="inscriere" class="registration-section">
       <div class="container">
         <div class="registration-card">
           <div class="registration-info">
-            <h2 class="section-title">Înscrie Copilul la Level 1</h2>
+            <h2 class="section-title">Înscrie Copilul la Creation</h2>
             <p>Grupe restrânse de maxim 8 copii. Fiecare copil își construiește robotul propriu pe care îl ia acasă!</p>
             <ul class="registration-list">
               <li>🎁 <strong>Robotul rămâne al copilului la finalul anului!</strong></li>
@@ -219,7 +294,7 @@
             </ul>
           </div>
 
-          <form class="registration-form" onsubmit="event.preventDefault(); alert('Solicitarea a fost trimisă cu succes pentru Level 1!');">
+          <form class="registration-form" onsubmit="event.preventDefault(); alert('Solicitarea a fost trimisă cu succes pentru Creation!');">
             <div class="form-group">
               <label for="p-name1">Nume Părinte</label>
               <input type="text" id="p-name1" required placeholder="Nume și Prenume">
@@ -232,7 +307,7 @@
               <label for="p-child1">Nume & Vârstă Copil</label>
               <input type="text" id="p-child1" required placeholder="Ex: Ionel, 10 ani">
             </div>
-            <button type="submit" class="btn btn-primary btn-block">Rezervă Loc la Level 1</button>
+            <button type="submit" class="btn btn-primary btn-block">Rezervă Loc la Creation</button>
           </form>
         </div>
       </div>
@@ -240,15 +315,15 @@
 
   </div>
 
-  <!-- ================= NIVELUL 2 (CONTINUITATE ANUL TRECUT) ================= -->
-  <div id="view-level2" class="page-view">
+  <!-- ================= EVOLUTION (CONTINUITATE ANUL TRECUT) ================= -->
+  <div id="view-evolution" class="page-view">
     <section class="hero hero-level2">
       <div class="container hero-grid">
         <div class="hero-content">
-          <div class="hero-badge">★ Curs Avansat - Level 2</div>
-          <h1 class="hero-title">Robot Factory <span>Level 2</span></h1>
+          <div class="hero-badge">★ Curs Avansat - Evolution</div>
+          <h1 class="hero-title">Robot Factory <span>Evolution</span></h1>
           <p class="hero-desc">
-            <strong>Continuitatea cursului de anul trecut!</strong> La Level 2 elevii reconstruiesc complet robotul și programul de la zero, integrează senzori avansați și se pregătesc pentru competiții de nivel înalt.
+            <strong>Continuitatea cursului de anul trecut!</strong> La nivelul Evolution elevii reconstruiesc complet robotul și programul de la zero, integrează senzori avansați și se pregătesc pentru competiții de nivel înalt.
           </p>
           <ul class="hero-highlights">
             <li class="hero-highlight-item">
@@ -265,26 +340,26 @@
             </li>
           </ul>
           <div class="hero-ctas">
-            <a href="#inscriere-l2" class="btn btn-primary">Înscrie-te la Level 2</a>
+            <a href="#inscriere-l2" class="btn btn-primary">Înscrie-te la Evolution</a>
           </div>
         </div>
 
         <div class="hero-media-container">
-          <img src="assets/hero_robot.svg" alt="Robot Factory Level 2 Advanced Rover" class="hero-img">
+          <img src="assets/hero_robot.svg" alt="Robot Factory Evolution Advanced Rover" class="hero-img">
         </div>
       </div>
     </section>
 
-    <!-- Registration Level 2 -->
+    <!-- Registration Evolution -->
     <section id="inscriere-l2" class="registration-section">
       <div class="container">
         <div class="registration-card">
           <div class="registration-info">
-            <h2 class="section-title">Înscrie Copilul la Level 2</h2>
+            <h2 class="section-title">Înscrie Copilul la Evolution</h2>
             <p>Destinat elevilor care au absolvit modulul anterior și doresc să treacă la nivelul competițional avansat.</p>
           </div>
 
-          <form class="registration-form" onsubmit="event.preventDefault(); alert('Solicitarea a fost trimisă cu succes pentru Level 2!');">
+          <form class="registration-form" onsubmit="event.preventDefault(); alert('Solicitarea a fost trimisă cu succes pentru Evolution!');">
             <div class="form-group">
               <label for="p-name2">Nume Părinte</label>
               <input type="text" id="p-name2" required placeholder="Nume și Prenume">
@@ -293,24 +368,24 @@
               <label for="p-phone2">Telefon de Contact</label>
               <input type="tel" id="p-phone2" required placeholder="069 XXX XXX">
             </div>
-            <button type="submit" class="btn btn-primary btn-block">Înscrie-te la Level 2</button>
+            <button type="submit" class="btn btn-primary btn-block">Înscrie-te la Evolution</button>
           </form>
         </div>
       </div>
     </section>
   </div>
 
-  <!-- ================= NIVELUL PRO (CONCEPT ONLY) ================= -->
-  <div id="view-level3" class="page-view">
+  <!-- ================= COMPETITION (DISPONIBIL DIN 2027) ================= -->
+  <div id="view-competition" class="page-view">
     <section class="inprogress-hero">
       <div class="container">
         <div class="inprogress-content">
-          <span class="inprogress-badge">Modul Conceptual</span>
-          <h1 class="inprogress-title">Robot Factory PRO</h1>
+          <span class="inprogress-badge">Disponibil din 2027</span>
+          <h1 class="inprogress-title">Robot Factory Competition</h1>
           <p class="inprogress-desc">
-            Nivelul PRO este un concept avansat dedicat mecatronicii industriale, Python avansat și brațelor robotice articulate. Detaliile vor fi anunțate ulterior.
+            Nivelul Competition este dedicat pregătirii intensive pentru competiții naționale și internaționale de robotică, mecatronică avansată și sisteme autonome complexe. 
           </p>
-          <p class="inprogress-note">Momentan ne concentrăm pe modulele Level 1 și Level 2.</p>
+          <p class="inprogress-note"><strong>Notă:</strong> Acest modul va fi disponibil începând cu anul <strong>2027</strong>. Momentan vă puteți înscrie la modulele <strong>Creation</strong> și <strong>Evolution</strong>.</p>
         </div>
       </div>
     </section>

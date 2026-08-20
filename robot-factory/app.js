@@ -39,12 +39,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!targetKey) return;
 
     let targetLevel = null;
-    if (targetKey === 'level1' || targetKey === '1') {
-      targetLevel = 'level1';
-    } else if (targetKey === 'level2' || targetKey === '2') {
-      targetLevel = 'level2';
-    } else if (targetKey === 'level3' || targetKey === 'pro' || targetKey === '3') {
-      targetLevel = 'level3';
+    if (targetKey === 'creation' || targetKey === 'level1' || targetKey === '1') {
+      targetLevel = 'creation';
+    } else if (targetKey === 'evolution' || targetKey === 'level2' || targetKey === '2') {
+      targetLevel = 'evolution';
+    } else if (targetKey === 'competition' || targetKey === 'level3' || targetKey === 'pro' || targetKey === '3') {
+      targetLevel = 'competition';
     }
 
     if (targetLevel) {
@@ -219,6 +219,9 @@ if (distance < 15) {
   const roadmapProgressBar = document.querySelector('.roadmap-progress-bar');
   const roadmapItems = document.querySelectorAll('.roadmap-item');
 
+  // List of active carousel update callbacks
+  const carouselUpdateCallbacks = [];
+
   function updateRoadmapProgress() {
     if (!roadmapTimeline || !roadmapProgressBar || roadmapItems.length === 0) return;
 
@@ -251,6 +254,9 @@ if (distance < 15) {
         }
       }
     });
+
+    // Notify carousels of active state change
+    carouselUpdateCallbacks.forEach(cb => cb());
   }
 
   // Click on point node to scroll smoothly to that step
@@ -263,7 +269,117 @@ if (distance < 15) {
     }
   });
 
+  // ==========================================
+  // 4. STEP CAROUSEL CONTROLS (AUTO-PLAY ONLY WHEN FOCUSED / ACTIVE)
+  // ==========================================
+  document.querySelectorAll('.step-carousel').forEach(carousel => {
+    const track = carousel.querySelector('.carousel-track');
+    const slides = Array.from(track ? track.children : []);
+    const nextBtn = carousel.querySelector('.carousel-btn-next');
+    const prevBtn = carousel.querySelector('.carousel-btn-prev');
+    const dotsContainer = carousel.querySelector('.carousel-dots');
+    const dots = Array.from(dotsContainer ? dotsContainer.children : []);
+    const parentItem = carousel.closest('.roadmap-item');
+
+    if (!track || slides.length === 0) return;
+
+    if (slides.length <= 1) {
+      if (nextBtn) nextBtn.style.display = 'none';
+      if (prevBtn) prevBtn.style.display = 'none';
+      if (dotsContainer) dotsContainer.style.display = 'none';
+      return;
+    }
+    let autoPlayTimer = null;
+
+    function isParentActive() {
+      return parentItem ? parentItem.classList.contains('active') : true;
+    }
+
+    function startAutoPlay() {
+      if (!isParentActive()) {
+        stopAutoPlay();
+        return;
+      }
+      if (autoPlayTimer) return; // already running
+      autoPlayTimer = setInterval(() => {
+        if (isParentActive()) {
+          moveToSlide(currentIndex + 1);
+        } else {
+          stopAutoPlay();
+        }
+      }, 4000);
+    }
+
+    function stopAutoPlay() {
+      if (autoPlayTimer) {
+        clearInterval(autoPlayTimer);
+        autoPlayTimer = null;
+      }
+    }
+
+    function resetAutoPlay() {
+      stopAutoPlay();
+      if (isParentActive()) {
+        startAutoPlay();
+      }
+    }
+
+    function moveToSlide(targetIndex) {
+      if (targetIndex < 0) targetIndex = slides.length - 1;
+      if (targetIndex >= slides.length) targetIndex = 0;
+
+      track.style.transform = `translateX(-${targetIndex * 100}%)`;
+      currentIndex = targetIndex;
+
+      dots.forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === currentIndex);
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        moveToSlide(currentIndex + 1);
+        resetAutoPlay();
+      });
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        moveToSlide(currentIndex - 1);
+        resetAutoPlay();
+      });
+    }
+
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        moveToSlide(index);
+        resetAutoPlay();
+      });
+    });
+
+    carousel.addEventListener('mouseenter', stopAutoPlay);
+    carousel.addEventListener('mouseleave', () => {
+      if (isParentActive()) startAutoPlay();
+    });
+
+    // Register callback to check active state on scroll
+    carouselUpdateCallbacks.push(() => {
+      if (isParentActive()) {
+        startAutoPlay();
+      } else {
+        stopAutoPlay();
+      }
+    });
+  });
+
   window.addEventListener('scroll', updateRoadmapProgress, { passive: true });
   window.addEventListener('resize', updateRoadmapProgress, { passive: true });
   setTimeout(updateRoadmapProgress, 100);
 });
+
