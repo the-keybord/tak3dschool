@@ -12,9 +12,8 @@
   <title>TAK 3D School | Modelare și Imprimare 3D</title>
 
   <!-- Favicon & Mobile Icons -->
-  <link rel="icon" type="image/png" href="../favicon.png">
-  <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
-  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon.png">
 
   <!-- Open Graph / Chat Link Sharing Preview (WhatsApp, Telegram, Facebook, Viber, iMessage) -->
   <meta property="og:type" content="website">
@@ -55,16 +54,16 @@
       </div>
 
       <div class="header-level-tabs">
-        <button class="header-level-tab" data-level="level1">Junior</button>
-        <button class="header-level-tab active" data-level="level2">Start</button>
-        <button class="header-level-tab" data-level="level3">Pro</button>
+        <button class="header-level-tab" data-level="junior">Junior</button>
+        <button class="header-level-tab active" data-level="start">Start</button>
+        <button class="header-level-tab" data-level="pro">Pro</button>
       </div>
 
     </div>
   </header>
 
   <!-- ================= NIVELUL 1 (JUNIOR 7-9 ANI) ================= -->
-  <div id="view-level1" class="page-view">
+  <div id="view-junior" class="page-view">
 
     <!-- Hero Section -->
     <section class="hero">
@@ -166,20 +165,30 @@
     <!-- Junior Objects Showcase Section -->
     <section id="junior-showcase" style="padding: 50px 0; background-color: var(--bg-secondary); border-top: 1px solid var(--border);">
       <div class="container" style="text-align: center;">
-        <h2 style="font-size: 2.1rem; font-weight: 700; color: #000; margin-bottom: 12px;">Exemple de Obiecte Create la Curs</h2>
+        <h2 style="font-size: 2.1rem; font-weight: 700; color: #000; margin-bottom: 12px;">Etapele de Învățare &amp; Obiectele Create la Curs</h2>
         <p style="max-width: 750px; margin: 0 auto 36px auto; color: var(--text-secondary); font-size: 1.05rem; line-height: 1.6;">
-          La fiecare ședință, copiii modelează și printează 3D un obiect nou pe care îl iau acasă!
+          Parcurgem 4 etape simple la fiecare ședință: copiii modelează, printează și pleacă acasă cu obiectul creat!
         </p>
+
+        <!-- 4 Step Pictures Gallery -->
+        <div class="junior-gallery">
+          <img src="3dJuniorStep1.png" alt="3D Junior Pasul 1" class="junior-gallery-img">
+          <img src="3dJuniorStep2.png" alt="3D Junior Pasul 2" class="junior-gallery-img">
+          <img src="3dJuniorStep3.png" alt="3D Junior Pasul 3" class="junior-gallery-img">
+          <img src="3dJuniorStep4.png" alt="3D Junior Pasul 4" class="junior-gallery-img">
+        </div>
+
         <div style="max-width: 1000px; margin: 0 auto; border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-2); border: 1px solid var(--border);">
           <img src="assets/junior_objects.jpg" alt="Exemple Obiecte Curs Junior 3D" style="width: 100%; height: auto; display: block;">
         </div>
+        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 14px; font-style: italic;">* Notă: Imaginile de mai sus sunt exemple vizuale demonstrative ale proiectelor și obiectelor realizate.</p>
       </div>
     </section>
 
   </div>
 
   <!-- ================= NIVELUL 2 (ACTIV) ================= -->
-  <div id="view-level2" class="page-view active">
+  <div id="view-start" class="page-view active">
 
     <!-- Hero Section -->
     <section class="hero">
@@ -358,14 +367,14 @@
       </div>
       <div class="accordion-container">
 
-        <!-- Panel 1: Artistul 3D -->
+        <!-- Panel 1: Laboratorul Creativ -->
         <div class="accordion-panel active" data-panel="0">
           <video src="3d2Intro.mp4" loop muted playsinline class="panel-bg-video"></video>
           <div class="panel-video-overlay"></div>
           <div class="panel-inner-valign">
             <div class="panel-header-content">
               <span class="panel-num">Artă Digitală &amp; Design</span>
-              <h3 class="panel-title">Artistul 3D</h3>
+              <h3 class="panel-title">Laboratorul Creativ</h3>
             </div>
 
             <div class="panel-body-content">
@@ -376,19 +385,19 @@
             </div>
 
             <div class="panel-visual">
-              <img src="assets/topic1.svg" alt="Artistul 3D" class="panel-svg">
+              <img src="assets/topic1.svg" alt="Laboratorul Creativ" class="panel-svg">
             </div>
           </div>
         </div>
 
-        <!-- Panel 2: Designerul de Produs -->
+        <!-- Panel 2: Fabrica de jucării -->
         <div class="accordion-panel" data-panel="1">
           <video src="3d2Toys.mp4" loop muted playsinline class="panel-bg-video"></video>
           <div class="panel-video-overlay"></div>
           <div class="panel-inner-valign">
             <div class="panel-header-content">
               <span class="panel-num">Inginerie &amp; Inovație</span>
-              <h3 class="panel-title">Designerul de Produs</h3>
+              <h3 class="panel-title">Fabrica de jucării</h3>
             </div>
 
             <div class="panel-body-content">
@@ -399,19 +408,19 @@
             </div>
 
             <div class="panel-visual">
-              <img src="assets/topic2.svg" alt="Designerul de Produs" class="panel-svg">
+              <img src="assets/topic2.svg" alt="Fabrica de jucării" class="panel-svg">
             </div>
           </div>
         </div>
 
-        <!-- Panel 3: Arhitectul -->
+        <!-- Panel 3: Descoperă Orașul -->
         <div class="accordion-panel" data-panel="2">
           <video src="3d2Arhitect.mp4" loop muted playsinline class="panel-bg-video"></video>
           <div class="panel-video-overlay"></div>
           <div class="panel-inner-valign">
             <div class="panel-header-content">
               <span class="panel-num">Viziune &amp; Geometrie</span>
-              <h3 class="panel-title">Arhitectul</h3>
+              <h3 class="panel-title">Descoperă Orașul</h3>
             </div>
 
             <div class="panel-body-content">
@@ -422,19 +431,19 @@
             </div>
 
             <div class="panel-visual">
-              <img src="assets/topic3.svg" alt="Arhitectul" class="panel-svg">
+              <img src="assets/topic3.svg" alt="Descoperă Orașul" class="panel-svg">
             </div>
           </div>
         </div>
 
-        <!-- Panel 4: Exploratorul -->
+        <!-- Panel 4: Descoperă Natura -->
         <div class="accordion-panel" data-panel="3">
           <video src="3d2Nature.mp4" loop muted playsinline class="panel-bg-video"></video>
           <div class="panel-video-overlay"></div>
           <div class="panel-inner-valign">
             <div class="panel-header-content">
               <span class="panel-num">Știință &amp; Modelare Organică</span>
-              <h3 class="panel-title">Exploratorul</h3>
+              <h3 class="panel-title">Descoperă Natura</h3>
             </div>
 
             <div class="panel-body-content">
@@ -445,7 +454,7 @@
             </div>
 
             <div class="panel-visual">
-              <img src="assets/topic4.svg" alt="Exploratorul" class="panel-svg">
+              <img src="assets/topic4.svg" alt="Descoperă Natura" class="panel-svg">
             </div>
           </div>
         </div>
@@ -477,13 +486,23 @@
     <!-- Start Projects Showcase Section -->
     <section class="start-showcase-section" style="padding: 50px 0; background-color: #FFFFFF; border-bottom: 1px solid var(--border);">
       <div class="container" style="text-align: center;">
-        <h2 style="font-size: 2.1rem; font-weight: 700; color: #000; margin-bottom: 12px;">Exemple de Proiecte Realizate de Elevi</h2>
+        <h2 style="font-size: 2.1rem; font-weight: 700; color: #000; margin-bottom: 12px;">Etape &amp; Exemple de Proiecte Realizate de Elevi</h2>
         <p style="max-width: 780px; margin: 0 auto 36px auto; color: var(--text-secondary); font-size: 1.05rem; line-height: 1.6;">
           Iată o mostră a obiectelor 3D realizate pe parcursul celor 4 profesii: de la pixel art și spinnere funcționale, la piese de șah, machete de arhitectură și modele științifice!
         </p>
+
+        <!-- 4 Step Pictures Gallery -->
+        <div class="junior-gallery">
+          <img src="3dJuniorStep1.png" alt="3D Start Pasul 1" class="junior-gallery-img">
+          <img src="3dJuniorStep2.png" alt="3D Start Pasul 2" class="junior-gallery-img">
+          <img src="3dJuniorStep3.png" alt="3D Start Pasul 3" class="junior-gallery-img">
+          <img src="3dJuniorStep4.png" alt="3D Start Pasul 4" class="junior-gallery-img">
+        </div>
+
         <div style="max-width: 1000px; margin: 0 auto; border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-2); border: 1px solid var(--border);">
           <img src="assets/start_projects_showcase.jpg" alt="Exemple Proiecte Realizate de Elevi la Cursul Start" style="width: 100%; height: auto; display: block;">
         </div>
+        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 14px; font-style: italic;">* Notă: Imaginile de mai sus sunt exemple vizuale demonstrative ale proiectelor și obiectelor realizate.</p>
       </div>
     </section>
 
@@ -564,7 +583,7 @@
   </div>
 
   <!-- ================= NIVELUL 3 (PRO 13-15 ANI) ================= -->
-  <div id="view-level3" class="page-view">
+  <div id="view-pro" class="page-view">
 
     <!-- Hero Section (Text on Left, 3D Model Floating on Right) -->
     <section class="hero">
@@ -815,14 +834,14 @@
       </div>
       <div class="accordion-container">
 
-        <!-- Panel 1: Inginerul 3D (New Profession for Pro Level) -->
+        <!-- Panel 1: 3D Design & Engineering -->
         <div class="accordion-panel active" data-panel="0">
           <video src="3d2Intro.mp4" loop muted playsinline class="panel-bg-video"></video>
           <div class="panel-video-overlay"></div>
           <div class="panel-inner-valign">
             <div class="panel-header-content">
               <span class="panel-num">Inginerie &amp; Modelare Tehnică</span>
-              <h3 class="panel-title">Inginerul 3D</h3>
+              <h3 class="panel-title">3D Design &amp; Engineering</h3>
             </div>
 
             <div class="panel-body-content">
@@ -833,19 +852,19 @@
             </div>
 
             <div class="panel-visual">
-              <img src="assets/topic2.svg" alt="Inginerul 3D" class="panel-svg">
+              <img src="assets/topic2.svg" alt="3D Design &amp; Engineering" class="panel-svg">
             </div>
           </div>
         </div>
 
-        <!-- Panel 2: Designerul de Produs -->
+        <!-- Panel 2: Product Design -->
         <div class="accordion-panel" data-panel="1">
           <video src="3d2Toys.mp4" loop muted playsinline class="panel-bg-video"></video>
           <div class="panel-video-overlay"></div>
           <div class="panel-inner-valign">
             <div class="panel-header-content">
               <span class="panel-num">Inginerie &amp; Inovație</span>
-              <h3 class="panel-title">Designerul de Produs</h3>
+              <h3 class="panel-title">Product Design</h3>
             </div>
 
             <div class="panel-body-content">
@@ -856,19 +875,19 @@
             </div>
 
             <div class="panel-visual">
-              <img src="assets/topic2.svg" alt="Designerul de Produs" class="panel-svg">
+              <img src="assets/topic2.svg" alt="Product Design" class="panel-svg">
             </div>
           </div>
         </div>
 
-        <!-- Panel 3: Arhitectul -->
+        <!-- Panel 3: Architect & Urbanism -->
         <div class="accordion-panel" data-panel="2">
           <video src="3d2Arhitect.mp4" loop muted playsinline class="panel-bg-video"></video>
           <div class="panel-video-overlay"></div>
           <div class="panel-inner-valign">
             <div class="panel-header-content">
               <span class="panel-num">Viziune &amp; Geometrie</span>
-              <h3 class="panel-title">Arhitectul</h3>
+              <h3 class="panel-title">Architect &amp; Urbanism</h3>
             </div>
 
             <div class="panel-body-content">
@@ -879,19 +898,19 @@
             </div>
 
             <div class="panel-visual">
-              <img src="assets/topic3.svg" alt="Arhitectul" class="panel-svg">
+              <img src="assets/topic3.svg" alt="Architect &amp; Urbanism" class="panel-svg">
             </div>
           </div>
         </div>
 
-        <!-- Panel 4: Exploratorul -->
+        <!-- Panel 4: Character Design -->
         <div class="accordion-panel" data-panel="3">
           <video src="3d2Nature.mp4" loop muted playsinline class="panel-bg-video"></video>
           <div class="panel-video-overlay"></div>
           <div class="panel-inner-valign">
             <div class="panel-header-content">
               <span class="panel-num">Știință &amp; Modelare Organică</span>
-              <h3 class="panel-title">Exploratorul</h3>
+              <h3 class="panel-title">Character Design</h3>
             </div>
 
             <div class="panel-body-content">
@@ -902,7 +921,7 @@
             </div>
 
             <div class="panel-visual">
-              <img src="assets/topic4.svg" alt="Exploratorul" class="panel-svg">
+              <img src="assets/topic4.svg" alt="Character Design" class="panel-svg">
             </div>
           </div>
         </div>
@@ -938,6 +957,7 @@
         <div style="max-width: 1000px; margin: 0 auto; border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-2); border: 1px solid var(--border);">
           <img src="assets/start_projects_showcase.jpg" alt="Exemple Proiecte Realizate de Elevi la Cursul Pro" style="width: 100%; height: auto; display: block;">
         </div>
+        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 14px; font-style: italic;">* Notă: Imaginile de mai sus sunt exemple vizuale demonstrative ale proiectelor și obiectelor realizate.</p>
       </div>
     </section>
 

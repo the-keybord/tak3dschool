@@ -21,3 +21,8 @@ These are strict rules that must be followed for all modifications to this codeb
 - **Do NOT automatically open, preview, or test web pages using automated browser tools (e.g. browser subagents).**
 - Only provide the server link (e.g., http://localhost:3000) in responses so the user can manually open and inspect the page.
 
+## 5. Local Deployment & Execution
+- **Always ensure the site is deployed/running locally whenever any change is made.**
+- Keep the local server active (e.g., `npx -y serve -p 3000` or `python -m http.server 3000`) and share the local preview link (e.g. http://localhost:3000) in the final response.
+
+

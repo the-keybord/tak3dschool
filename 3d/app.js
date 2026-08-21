@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 50);
   }
 
-  // Parse direct link from URL (e.g., #level1, #level2, #level3, ?level=level1, ?level=2)
+  // Parse direct link from URL (e.g., #junior, #start, #pro, #level1, #level2, #level3)
   function initLevelFromURL() {
     const rawHash = window.location.hash.toLowerCase().replace('#', '');
     const urlParams = new URLSearchParams(window.location.search);
@@ -54,12 +54,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!targetKey) return;
 
     let targetLevel = null;
-    if (targetKey === 'level1' || targetKey === 'junior' || targetKey === '1') {
-      targetLevel = 'level1';
-    } else if (targetKey === 'level2' || targetKey === 'start' || targetKey === '2') {
-      targetLevel = 'level2';
-    } else if (targetKey === 'level3' || targetKey === 'pro' || targetKey === '3') {
-      targetLevel = 'level3';
+    if (targetKey === 'junior' || targetKey === 'level1' || targetKey === '1') {
+      targetLevel = 'junior';
+    } else if (targetKey === 'start' || targetKey === 'level2' || targetKey === '2') {
+      targetLevel = 'start';
+    } else if (targetKey === 'pro' || targetKey === 'level3' || targetKey === '3') {
+      targetLevel = 'pro';
     }
 
     if (targetLevel) {
