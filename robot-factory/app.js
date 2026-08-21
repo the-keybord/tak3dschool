@@ -283,30 +283,23 @@ if (distance < 15) {
 
     if (!track || slides.length === 0) return;
 
+    let currentIndex = 0;
+    let autoPlayTimer = null;
+
     if (slides.length <= 1) {
       if (nextBtn) nextBtn.style.display = 'none';
       if (prevBtn) prevBtn.style.display = 'none';
       if (dotsContainer) dotsContainer.style.display = 'none';
-      return;
-    }
-    let autoPlayTimer = null;
-
-    function isParentActive() {
-      return parentItem ? parentItem.classList.contains('active') : true;
+    } else {
+      if (nextBtn) nextBtn.style.display = 'flex';
+      if (prevBtn) prevBtn.style.display = 'flex';
+      if (dotsContainer) dotsContainer.style.display = 'flex';
     }
 
     function startAutoPlay() {
-      if (!isParentActive()) {
-        stopAutoPlay();
-        return;
-      }
-      if (autoPlayTimer) return; // already running
+      if (slides.length <= 1 || autoPlayTimer) return;
       autoPlayTimer = setInterval(() => {
-        if (isParentActive()) {
-          moveToSlide(currentIndex + 1);
-        } else {
-          stopAutoPlay();
-        }
+        moveToSlide(currentIndex + 1);
       }, 4000);
     }
 
@@ -319,9 +312,7 @@ if (distance < 15) {
 
     function resetAutoPlay() {
       stopAutoPlay();
-      if (isParentActive()) {
-        startAutoPlay();
-      }
+      startAutoPlay();
     }
 
     function moveToSlide(targetIndex) {
@@ -364,18 +355,11 @@ if (distance < 15) {
     });
 
     carousel.addEventListener('mouseenter', stopAutoPlay);
-    carousel.addEventListener('mouseleave', () => {
-      if (isParentActive()) startAutoPlay();
-    });
+    carousel.addEventListener('mouseleave', startAutoPlay);
 
-    // Register callback to check active state on scroll
-    carouselUpdateCallbacks.push(() => {
-      if (isParentActive()) {
-        startAutoPlay();
-      } else {
-        stopAutoPlay();
-      }
-    });
+    if (slides.length > 1) {
+      startAutoPlay();
+    }
   });
 
   window.addEventListener('scroll', updateRoadmapProgress, { passive: true });

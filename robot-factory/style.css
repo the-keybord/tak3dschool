@@ -479,7 +479,7 @@ header {
   height: 10px;
 }
 
-/* Inactive Card State */
+/* Card State */
 .roadmap-content {
   background-color: #FFFFFF;
   border: 1.5px solid #E2E8F0;
@@ -487,14 +487,11 @@ header {
   padding: 1.8rem;
   box-shadow: var(--shadow-1);
   transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-  opacity: 0.65;
-  transform: scale(0.98);
+  opacity: 1;
 }
 
-/* Active / Scrolled-to Card State (Elevated & Opened) */
+/* Active / Scrolled-to Card State (Elevated) */
 .roadmap-item.active .roadmap-content {
-  opacity: 1;
-  transform: scale(1) translateX(6px);
   border-color: var(--primary);
   border-left: 5px solid var(--primary);
   box-shadow: 0 10px 30px rgba(198, 40, 40, 0.15);
@@ -543,7 +540,7 @@ header {
   margin-bottom: 1.2rem;
 }
 
-/* Media Box & Step Carousel Component (Hidden until step is active/focused) */
+/* Media Box & Step Carousel Component */
 .step-carousel {
   position: relative;
   width: 100%;
@@ -552,16 +549,15 @@ header {
   background-color: #121212;
   border: 1px solid var(--border-subtle);
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
-  margin-top: 0;
-  max-height: 0;
-  opacity: 0;
-  pointer-events: none;
-  transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease, margin-top 0.35s ease;
+  margin-top: 1.2rem;
+  max-height: 500px;
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .roadmap-item.active .step-carousel {
   margin-top: 1.2rem;
-  max-height: 400px;
+  max-height: 500px;
   opacity: 1;
   pointer-events: auto;
 }
