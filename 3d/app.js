@@ -13,8 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // 2. Global Level Switching (Header Tabs)
   const headerTabs = document.querySelectorAll('.header-level-tab');
   const pageViews = document.querySelectorAll('.page-view');
-  const trackDropdown = document.getElementById('track');
-  const enrollSection = document.getElementById('enroll');
 
   function switchLevel(levelId, updateHistory = true) {
     // Update header tabs UI
@@ -34,25 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
         view.classList.remove('active');
       }
     });
-
-    // Synchronize enrollment form dropdown
-    if (trackDropdown) {
-      trackDropdown.value = levelId;
-    }
-
-    // Toggle main enrollment form description or behavior depending on selection
-    if (enrollSection) {
-      const enrollDesc = enrollSection.querySelector('.enroll-desc');
-      if (enrollDesc) {
-        if (levelId === 'level1') {
-          enrollDesc.textContent = 'Completează formularul de înscriere pentru Nivelul 1 (Junior 7-9 ani).';
-        } else if (levelId === 'level2') {
-          enrollDesc.textContent = 'Completează formularul de înscriere pentru Nivelul 2 (Start 10-12 ani).';
-        } else if (levelId === 'level3') {
-          enrollDesc.textContent = 'Completează formularul de mai jos pentru a te înscrie în lista de așteptare pentru Nivelul 3 (Pro 12+ ani).';
-        }
-      }
-    }
 
     // Update URL hash for shareable direct links
     if (updateHistory && history.replaceState) {
@@ -98,56 +77,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // Check URL on load and on hashchange
   initLevelFromURL();
   window.addEventListener('hashchange', initLevelFromURL);
-
-  // Bidirectional sync: when changing dropdown, switch the active header tab / page view
-  if (trackDropdown) {
-    trackDropdown.addEventListener('change', (e) => {
-      const levelId = e.target.value;
-      if (levelId) {
-        switchLevel(levelId);
-      }
-    });
-  }
-
-  // 3. Main Enrollment Form Submission Handler
-  const applyForm = document.getElementById('apply-form');
-  const mainFormMsg = document.getElementById('form-msg');
-
-  if (applyForm) {
-    applyForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-
-      const parentNameInput = document.getElementById('parent_name');
-      const childAgeInput = document.getElementById('child_age');
-      const phoneInput = document.getElementById('phone');
-      const emailInput = document.getElementById('email');
-
-      const parentName = parentNameInput ? parentNameInput.value.trim() : '';
-      const childAge = childAgeInput ? childAgeInput.value.trim() : '';
-      const phone = phoneInput ? phoneInput.value.trim() : '';
-      const email = emailInput ? emailInput.value.trim() : '';
-
-      if (parentName === '' || childAge === '' || phone === '' || email === '') {
-        showFeedback(mainFormMsg, 'Vă rugăm să completați toate câmpurile corect.', 'error');
-        return;
-      }
-
-      const submitBtn = applyForm.querySelector('button[type="submit"]');
-      const originalText = submitBtn.textContent;
-      submitBtn.textContent = 'Se trimite cererea...';
-      submitBtn.disabled = true;
-
-      setTimeout(() => {
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
-
-        const feedbackText = `Vă mulțumim, ${parentName}! Ați fost adăugat cu succes pe lista de așteptare pentru Nivelul Start (10-12 ani). Vă vom contacta la numărul ${phone} și pe email (${email}) odată ce se eliberează un loc în cohortă.`;
-
-        showFeedback(mainFormMsg, feedbackText, 'success');
-        applyForm.reset();
-      }, 1200);
-    });
-  }
 
 
 
